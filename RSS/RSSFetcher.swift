@@ -14,6 +14,7 @@ class RSSFetcher: NSObject, XMLParserDelegate {
     private var currentDescription = ""
     private var currentPubDateString = ""
     private var currentImageURLString: String?
+    private var currentLinkString = ""
     private var completionHandler: ((Result<[NewsItem], Error>) -> Void)?
     
     func fetchFeed(from url: URL, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
@@ -45,6 +46,7 @@ class RSSFetcher: NSObject, XMLParserDelegate {
             currentDescription = ""
             currentPubDateString = ""
             currentImageURLString = nil
+            currentLinkString = ""
         }
         if elementName == "enclosure", let url = attributeDict["url"] {
             currentImageURLString = url
@@ -59,6 +61,8 @@ class RSSFetcher: NSObject, XMLParserDelegate {
             currentDescription += string
         case "pubDate":
             currentPubDateString += string
+        case "link":
+                    currentLinkString += string
         default:
             break
         }
@@ -72,13 +76,15 @@ class RSSFetcher: NSObject, XMLParserDelegate {
             let pubDate = dateFormatter.date(from: currentPubDateString.trimmingCharacters(in: .whitespacesAndNewlines))
             
             let imageURL = currentImageURLString != nil ? URL(string: currentImageURLString!) : nil
-            
+            let linkURL = URL(string: currentLinkString.trimmingCharacters(in: .whitespacesAndNewlines)) 
+
             let newsItem = NewsItem(
                 title: currentTitle.trimmingCharacters(in: .whitespacesAndNewlines),
                 description: currentDescription.trimmingCharacters(in: .whitespacesAndNewlines),
                 imageURL: imageURL,
                 source: NewsSource(name: "Dummy", logoURL: nil, emoji: nil), // Sätt källa i ViewModel
-                pubDate: pubDate
+                pubDate: pubDate,
+                link: linkURL
             )
             items.append(newsItem)
         }

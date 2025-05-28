@@ -13,7 +13,8 @@ struct Unifeed_Index: View {
     @AppStorage("adsRemoved") private var adsRemoved = false
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
-    @State private var showingPopover: Bool = false
+    @State private var showingSheet = false
+    @State private var selectedLink: URL? = nil
     
     var body: some View {
         NavigationView {
@@ -22,10 +23,23 @@ struct Unifeed_Index: View {
                     ForEach(viewModel.newsItems) { item in
                         NewsItemView(newsItem: item)
                             .padding(.horizontal)
+                            .onTapGesture {
+                                if let link = item.link {
+                                    selectedLink = link
+                                    showingSheet = true
+                                    }
+                            }
                     }
                 }
             }
-
+            .sheet(isPresented: $showingSheet) {
+                if let url = selectedLink {
+                    SafariView(url: url)
+                } else {
+                    Text("Ingen länk tillgänglig")
+                        .padding()
+                }
+            }
             .refreshable {
                 viewModel.loadNews()
             }

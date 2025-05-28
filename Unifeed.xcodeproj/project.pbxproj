@@ -31,6 +31,7 @@
 		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A5FD19F2DE7949E00A98F55 /* TestRSSFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5FD19E2DE7949E00A98F55 /* TestRSSFetcher.swift */; };
+		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITests.swift; sourceTree = "<group>"; };
 		3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A5FD19E2DE7949E00A98F55 /* TestRSSFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRSSFetcher.swift; sourceTree = "<group>"; };
+		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				3A0357A72DE77D480066F14E /* Settings.swift */,
 				3A0357B72DE7802C0066F14E /* NewsViewModel.swift */,
 				3A0357B92DE7805B0066F14E /* NewsItemView.swift */,
+				3A7C076F2DE7BBF50036EF90 /* SafariView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */,
 				3A0357B62DE780020066F14E /* RSSFetcher.swift in Sources */,
 				3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */,
+				3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */,
 				3A0357AB2DE77DE90066F14E /* PurchaseView.swift in Sources */,
 				3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */,
 				3A0357C42DE787200066F14E /* Category.swift in Sources */,

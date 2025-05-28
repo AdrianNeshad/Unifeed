@@ -15,7 +15,7 @@ class NewsViewModel: ObservableObject {
     
     private let sources: [NewsSource] = [
         NewsSource(name: "Polisen", logoURL: nil, emoji: "👮🏼‍♂️"),
-       /* NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico")), */
+        NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico"), emoji: nil),
     ]
     
     func loadNews() {
@@ -37,7 +37,8 @@ class NewsViewModel: ObservableObject {
                             description: item.description,
                             imageURL: item.imageURL,
                             source: source,
-                            pubDate: item.pubDate
+                            pubDate: item.pubDate,
+                            link: item.link
                         )
                     }
                     allItems.append(contentsOf: itemsWithSource)
@@ -49,7 +50,6 @@ class NewsViewModel: ObservableObject {
         }
         
         group.notify(queue: .main) {
-            // Filtrera bort dubbletter i allItems baserat på titel + datum
             var seen = Set<String>()
             let uniqueItems = allItems.filter { item in
                 let key = "\(item.title)-\(item.pubDate?.timeIntervalSince1970 ?? 0)"
@@ -73,8 +73,8 @@ class NewsViewModel: ObservableObject {
         switch sourceName {
         case "Polisen":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
-       /* case "Folkhälsomyndigheten":
-            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss") */
+        case "Folkhälsomyndigheten":
+            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
         default:
             return nil
         }
@@ -88,14 +88,16 @@ class NewsViewModel: ObservableObject {
                         description: "Det här är en exempelbeskrivning.",
                         imageURL: nil,
                         source: NewsSource(name: "Mockkälla", logoURL: nil, emoji: nil),
-                        pubDate: Date()
+                        pubDate: Date(),
+                        link: URL(string: "https://exempel.se/nyhet1")
                     ),
                     NewsItem(
                         title: "Exempelnyhet 2",
                         description: "Andra exemplet på nyhetstext.",
                         imageURL: nil,
                         source: NewsSource(name: "Mockkälla 2", logoURL: nil, emoji: nil),
-                        pubDate: Date().addingTimeInterval(-3600)
+                        pubDate: Date().addingTimeInterval(-3600),
+                        link: URL(string: "https://exempel.se/nyhet2")
                     )
                 ]
             }
