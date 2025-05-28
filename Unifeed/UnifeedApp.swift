@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct UnifeedApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = true
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Unifeed_Index()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

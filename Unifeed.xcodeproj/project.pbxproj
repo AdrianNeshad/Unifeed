@@ -7,8 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0357A12DE77CF80066F14E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0357A02DE77CF80066F14E /* Launch Screen.storyboard */; };
+		3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357A32DE77D160066F14E /* Unifeed Index.swift */; };
+		3A0357A82DE77D480066F14E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357A72DE77D480066F14E /* Settings.swift */; };
+		3A0357AB2DE77DE90066F14E /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357AA2DE77DE90066F14E /* PurchaseView.swift */; };
+		3A0357AD2DE77DF40066F14E /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357AC2DE77DF40066F14E /* StoreManager.swift */; };
+		3A0357B02DE77E6A0066F14E /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357AF2DE77E6A0066F14E /* Language.swift */; };
+		3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357B12DE77F050066F14E /* MailFeedback.swift */; };
+		3A0357B42DE77FEA0066F14E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357B32DE77FEA0066F14E /* Models.swift */; };
+		3A0357B62DE780020066F14E /* RSSFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357B52DE780020066F14E /* RSSFetcher.swift */; };
+		3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357B72DE7802C0066F14E /* NewsViewModel.swift */; };
+		3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357B92DE7805B0066F14E /* NewsItemView.swift */; };
+		3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357BB2DE782A00066F14E /* AppVersion.swift */; };
+		3A0357BF2DE782EE0066F14E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357BE2DE782EE0066F14E /* AlertToast */; };
+		3A0357C12DE786A70066F14E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357C02DE786A70066F14E /* Location.swift */; };
+		3A0357C42DE787200066F14E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357C32DE787200066F14E /* Category.swift */; };
 		3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424D12DE779DC000D58DA /* UnifeedApp.swift */; };
-		3A5424D42DE779DC000D58DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424D32DE779DC000D58DA /* ContentView.swift */; };
 		3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D52DE779DE000D58DA /* Assets.xcassets */; };
 		3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */; };
 		3A5424E42DE779DF000D58DA /* UnifeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424E32DE779DF000D58DA /* UnifeedTests.swift */; };
@@ -34,9 +48,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A0357A02DE77CF80066F14E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3A0357A32DE77D160066F14E /* Unifeed Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unifeed Index.swift"; sourceTree = "<group>"; };
+		3A0357A72DE77D480066F14E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3A0357AA2DE77DE90066F14E /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
+		3A0357AC2DE77DF40066F14E /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		3A0357AF2DE77E6A0066F14E /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		3A0357B12DE77F050066F14E /* MailFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailFeedback.swift; sourceTree = "<group>"; };
+		3A0357B32DE77FEA0066F14E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		3A0357B52DE780020066F14E /* RSSFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFetcher.swift; sourceTree = "<group>"; };
+		3A0357B72DE7802C0066F14E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		3A0357B92DE7805B0066F14E /* NewsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemView.swift; sourceTree = "<group>"; };
+		3A0357BB2DE782A00066F14E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		3A0357C02DE786A70066F14E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		3A0357C32DE787200066F14E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3A5424CE2DE779DC000D58DA /* Unifeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unifeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5424D12DE779DC000D58DA /* UnifeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedApp.swift; sourceTree = "<group>"; };
-		3A5424D32DE779DC000D58DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3A5424D52DE779DE000D58DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A5424D72DE779DE000D58DA /* Unifeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Unifeed.entitlements; sourceTree = "<group>"; };
 		3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0357BF2DE782EE0066F14E /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +100,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0357A22DE77D010066F14E /* RSS */ = {
+			isa = PBXGroup;
+			children = (
+				3A0357B32DE77FEA0066F14E /* Models.swift */,
+				3A0357B52DE780020066F14E /* RSSFetcher.swift */,
+			);
+			path = RSS;
+			sourceTree = "<group>";
+		};
+		3A0357A52DE77D300066F14E /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
+		3A0357A62DE77D3B0066F14E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A0357C32DE787200066F14E /* Category.swift */,
+				3A0357C02DE786A70066F14E /* Location.swift */,
+				3A0357A72DE77D480066F14E /* Settings.swift */,
+				3A0357B72DE7802C0066F14E /* NewsViewModel.swift */,
+				3A0357B92DE7805B0066F14E /* NewsItemView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A0357A92DE77DC00066F14E /* in-app purchase */ = {
+			isa = PBXGroup;
+			children = (
+				3A0357AA2DE77DE90066F14E /* PurchaseView.swift */,
+				3A0357AC2DE77DF40066F14E /* StoreManager.swift */,
+			);
+			path = "in-app purchase";
+			sourceTree = "<group>";
+		};
+		3A0357AE2DE77E5B0066F14E /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				3A0357AF2DE77E6A0066F14E /* Language.swift */,
+				3A0357B12DE77F050066F14E /* MailFeedback.swift */,
+				3A0357BB2DE782A00066F14E /* AppVersion.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
 		3A5424C52DE779DC000D58DA = {
 			isa = PBXGroup;
 			children = (
 				3A5424D02DE779DC000D58DA /* Unifeed */,
+				3A0357AE2DE77E5B0066F14E /* Functions */,
+				3A0357A62DE77D3B0066F14E /* Views */,
+				3A0357A22DE77D010066F14E /* RSS */,
+				3A0357A52DE77D300066F14E /* Ads */,
+				3A0357A92DE77DC00066F14E /* in-app purchase */,
 				3A5424E22DE779DF000D58DA /* UnifeedTests */,
 				3A5424EC2DE779DF000D58DA /* UnifeedUITests */,
 				3A5424CF2DE779DC000D58DA /* Products */,
@@ -96,8 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				3A5424D12DE779DC000D58DA /* UnifeedApp.swift */,
-				3A5424D32DE779DC000D58DA /* ContentView.swift */,
+				3A0357A32DE77D160066F14E /* Unifeed Index.swift */,
 				3A5424D52DE779DE000D58DA /* Assets.xcassets */,
+				3A0357A02DE77CF80066F14E /* Launch Screen.storyboard */,
 				3A5424D72DE779DE000D58DA /* Unifeed.entitlements */,
 				3A5424D82DE779DE000D58DA /* Preview Content */,
 			);
@@ -145,6 +226,9 @@
 			dependencies = (
 			);
 			name = Unifeed;
+			packageProductDependencies = (
+				3A0357BE2DE782EE0066F14E /* AlertToast */,
+			);
 			productName = Unifeed;
 			productReference = 3A5424CE2DE779DC000D58DA /* Unifeed.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +301,9 @@
 				Base,
 			);
 			mainGroup = 3A5424C52DE779DC000D58DA;
+			packageReferences = (
+				3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 3A5424CF2DE779DC000D58DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A0357A12DE77CF80066F14E /* Launch Screen.storyboard in Resources */,
 				3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */,
 				3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */,
 			);
@@ -259,8 +347,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5424D42DE779DC000D58DA /* ContentView.swift in Sources */,
+				3A0357A82DE77D480066F14E /* Settings.swift in Sources */,
 				3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */,
+				3A0357AD2DE77DF40066F14E /* StoreManager.swift in Sources */,
+				3A0357B42DE77FEA0066F14E /* Models.swift in Sources */,
+				3A0357B02DE77E6A0066F14E /* Language.swift in Sources */,
+				3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */,
+				3A0357C12DE786A70066F14E /* Location.swift in Sources */,
+				3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */,
+				3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */,
+				3A0357B62DE780020066F14E /* RSSFetcher.swift in Sources */,
+				3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */,
+				3A0357AB2DE77DE90066F14E /* PurchaseView.swift in Sources */,
+				3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */,
+				3A0357C42DE787200066F14E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +524,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -432,9 +533,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.7;
@@ -442,7 +543,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AdrianNeshad.Unifeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -462,6 +564,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -470,9 +573,9 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.7;
@@ -480,7 +583,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AdrianNeshad.Unifeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -617,6 +721,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A0357BE2DE782EE0066F14E /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A5424C62DE779DC000D58DA /* Project object */;
 }
