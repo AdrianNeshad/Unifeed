@@ -16,10 +16,15 @@ struct Unifeed_Index: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.newsItems) { item in
-                NewsItemView(newsItem: item)
-                    .listRowInsets(EdgeInsets())
+            ScrollView {
+                LazyVStack(spacing: 0) { 
+                    ForEach(viewModel.newsItems) { item in
+                        NewsItemView(newsItem: item)
+                            .padding(.horizontal)
+                    }
+                }
             }
+
             .refreshable {
                 viewModel.loadNews()
             }

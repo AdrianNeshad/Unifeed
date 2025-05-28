@@ -11,6 +11,7 @@ struct NewsSource: Identifiable {
     let id = UUID()
     let name: String
     let logoURL: URL?
+    let emoji: String?
 }
 
 struct NewsItem: Identifiable {

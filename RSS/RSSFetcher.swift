@@ -6,41 +6,89 @@
 //
 
 import Foundation
-import FeedKit
 
-class RSSFetcher {
+class RSSFetcher: NSObject, XMLParserDelegate {
+    private var items: [NewsItem] = []
+    private var currentElement = ""
+    private var currentTitle = ""
+    private var currentDescription = ""
+    private var currentPubDateString = ""
+    private var currentImageURLString: String?
+    private var completionHandler: ((Result<[NewsItem], Error>) -> Void)?
+    
     func fetchFeed(from url: URL, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
-        let parser = FeedParser(URL: url)
-        
-        parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { result in
-            switch result {
-            case .success(let feed):
-                var newsItems: [NewsItem] = []
-                
-                if let rssFeed = feed.rssFeed {
-                    for item in rssFeed.items ?? [] {
-                        let title = item.title ?? "Ingen titel"
-                        let description = item.description ?? ""
-                        
-                        var imageURL: URL? = nil
-                        if let media = item.media?.mediaContents?.first, let urlString = media.attributes?.url {
-                            imageURL = URL(string: urlString)
-                        } else if let enclosure = item.enclosure, let urlString = enclosure.url {
-                            imageURL = URL(string: urlString)
-                        }
-                        
-                        let pubDate = item.pubDate
-                        let source = NewsSource(name: "Dummy", logoURL: nil)
-                        
-                        let newsItem = NewsItem(title: title, description: description, imageURL: imageURL, source: source, pubDate: pubDate)
-                        newsItems.append(newsItem)
-                    }
-                }
-                
-                completion(.success(newsItems))
-            case .failure(let error):
+        self.completionHandler = completion
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
                 completion(.failure(error))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data", code: 0)))
+                return
+            }
+            
+            let parser = XMLParser(data: data)
+            parser.delegate = self
+            if !parser.parse() {
+                completion(.failure(NSError(domain: "Parsing failed", code: 0)))
             }
         }
+        task.resume()
+    }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String,
+                namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+        if elementName == "item" {
+            currentTitle = ""
+            currentDescription = ""
+            currentPubDateString = ""
+            currentImageURLString = nil
+        }
+        if elementName == "enclosure", let url = attributeDict["url"] {
+            currentImageURLString = url
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        switch currentElement {
+        case "title":
+            currentTitle += string
+        case "description":
+            currentDescription += string
+        case "pubDate":
+            currentPubDateString += string
+        default:
+            break
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String,
+                namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "item" {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+            let pubDate = dateFormatter.date(from: currentPubDateString.trimmingCharacters(in: .whitespacesAndNewlines))
+            
+            let imageURL = currentImageURLString != nil ? URL(string: currentImageURLString!) : nil
+            
+            let newsItem = NewsItem(
+                title: currentTitle.trimmingCharacters(in: .whitespacesAndNewlines),
+                description: currentDescription.trimmingCharacters(in: .whitespacesAndNewlines),
+                imageURL: imageURL,
+                source: NewsSource(name: "Dummy", logoURL: nil, emoji: nil), // Sätt källa i ViewModel
+                pubDate: pubDate
+            )
+            items.append(newsItem)
+        }
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        completionHandler?(.success(items))
+    }
+    
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        completionHandler?(.failure(parseError))
     }
 }

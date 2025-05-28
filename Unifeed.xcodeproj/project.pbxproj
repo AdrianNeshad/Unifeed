@@ -30,6 +30,7 @@
 		3A5424E42DE779DF000D58DA /* UnifeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424E32DE779DF000D58DA /* UnifeedTests.swift */; };
 		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
+		3A5FD19F2DE7949E00A98F55 /* TestRSSFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5FD19E2DE7949E00A98F55 /* TestRSSFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		3A5424E92DE779DF000D58DA /* UnifeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnifeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITests.swift; sourceTree = "<group>"; };
 		3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3A5FD19E2DE7949E00A98F55 /* TestRSSFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRSSFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				3A0357B32DE77FEA0066F14E /* Models.swift */,
 				3A0357B52DE780020066F14E /* RSSFetcher.swift */,
+				3A5FD19E2DE7949E00A98F55 /* TestRSSFetcher.swift */,
 			);
 			path = RSS;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				3A0357A82DE77D480066F14E /* Settings.swift in Sources */,
 				3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */,
 				3A0357AD2DE77DF40066F14E /* StoreManager.swift in Sources */,
+				3A5FD19F2DE7949E00A98F55 /* TestRSSFetcher.swift in Sources */,
 				3A0357B42DE77FEA0066F14E /* Models.swift in Sources */,
 				3A0357B02DE77E6A0066F14E /* Language.swift in Sources */,
 				3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */,

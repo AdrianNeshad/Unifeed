@@ -14,13 +14,12 @@ class NewsViewModel: ObservableObject {
     private let rssFetcher = RSSFetcher()
     
     private let sources: [NewsSource] = [
-        NewsSource(name: "Polisen", logoURL: URL(string: "https://www.polisen.se/favicon.ico")),
-        NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico")),
+        NewsSource(name: "Polisen", logoURL: nil, emoji: "👮🏼‍♂️"),
+       /* NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico")), */
     ]
     
     func loadNews() {
-        newsItems = [] // Rensa innan ny laddning
-        
+        newsItems = []
         let group = DispatchGroup()
         var allItems: [NewsItem] = []
         var errors: [Error] = []
@@ -50,20 +49,32 @@ class NewsViewModel: ObservableObject {
         }
         
         group.notify(queue: .main) {
-            self.newsItems = allItems.sorted(by: { ($0.pubDate ?? Date.distantPast) > ($1.pubDate ?? Date.distantPast) })
-            
+            // Filtrera bort dubbletter i allItems baserat på titel + datum
+            var seen = Set<String>()
+            let uniqueItems = allItems.filter { item in
+                let key = "\(item.title)-\(item.pubDate?.timeIntervalSince1970 ?? 0)"
+                if seen.contains(key) {
+                    return false
+                } else {
+                    seen.insert(key)
+                    return true
+                }
+            }
+            self.newsItems = uniqueItems.sorted(by: { ($0.pubDate ?? Date.distantPast) > ($1.pubDate ?? Date.distantPast) })
+
             if !errors.isEmpty {
-                print("Fel vid hämtning av vissa flöden: \(errors)")
+                print("Fel vid hämtning: \(errors)")
             }
         }
     }
+
     
     private func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
         case "Polisen":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
-        case "Folkhälsomyndigheten":
-            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
+       /* case "Folkhälsomyndigheten":
+            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss") */
         default:
             return nil
         }
@@ -76,14 +87,14 @@ class NewsViewModel: ObservableObject {
                         title: "Exempelnyhet 1",
                         description: "Det här är en exempelbeskrivning.",
                         imageURL: nil,
-                        source: NewsSource(name: "Mockkälla", logoURL: nil),
+                        source: NewsSource(name: "Mockkälla", logoURL: nil, emoji: nil),
                         pubDate: Date()
                     ),
                     NewsItem(
                         title: "Exempelnyhet 2",
                         description: "Andra exemplet på nyhetstext.",
                         imageURL: nil,
-                        source: NewsSource(name: "Mockkälla 2", logoURL: nil),
+                        source: NewsSource(name: "Mockkälla 2", logoURL: nil, emoji: nil),
                         pubDate: Date().addingTimeInterval(-3600)
                     )
                 ]
