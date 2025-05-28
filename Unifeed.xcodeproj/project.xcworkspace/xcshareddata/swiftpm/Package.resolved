@@ -8,6 +8,15 @@
         "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f",
         "version" : "1.3.9"
       }
+    },
+    {
+      "identity" : "feedkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nmdias/FeedKit",
+      "state" : {
+        "revision" : "81e3c6f1f7e158a179968db183c9ee1a7af63b54",
+        "version" : "10.0.1"
+      }
     }
   ],
   "version" : 2

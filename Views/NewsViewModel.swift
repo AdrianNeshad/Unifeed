@@ -14,8 +14,8 @@ class NewsViewModel: ObservableObject {
     private let rssFetcher = RSSFetcher()
     
     private let sources: [NewsSource] = [
-        NewsSource(name: "DN", logoURL: URL(string: "https://www.dn.se/favicon.ico")),
-        NewsSource(name: "SVT", logoURL: URL(string: "https://www.svt.se/favicon.ico")),
+        NewsSource(name: "Polisen", logoURL: URL(string: "https://www.polisen.se/favicon.ico")),
+        NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico")),
     ]
     
     func loadNews() {
@@ -60,12 +60,33 @@ class NewsViewModel: ObservableObject {
     
     private func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
-        case "DN":
-            return URL(string: "https://www.dn.se/m/rss")
-        case "SVT":
-            return URL(string: "https://www.svt.se/nyheter/rss.xml")
+        case "Polisen":
+            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
+        case "Folkhälsomyndigheten":
+            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
         default:
             return nil
         }
     }
+    
+    init(mock: Bool = false) {
+            if mock {
+                newsItems = [
+                    NewsItem(
+                        title: "Exempelnyhet 1",
+                        description: "Det här är en exempelbeskrivning.",
+                        imageURL: nil,
+                        source: NewsSource(name: "Mockkälla", logoURL: nil),
+                        pubDate: Date()
+                    ),
+                    NewsItem(
+                        title: "Exempelnyhet 2",
+                        description: "Andra exemplet på nyhetstext.",
+                        imageURL: nil,
+                        source: NewsSource(name: "Mockkälla 2", logoURL: nil),
+                        pubDate: Date().addingTimeInterval(-3600)
+                    )
+                ]
+            }
+        }
 }

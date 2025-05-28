@@ -22,6 +22,8 @@
 		3A0357BF2DE782EE0066F14E /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357BE2DE782EE0066F14E /* AlertToast */; };
 		3A0357C12DE786A70066F14E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357C02DE786A70066F14E /* Location.swift */; };
 		3A0357C42DE787200066F14E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357C32DE787200066F14E /* Category.swift */; };
+		3A0357C72DE78BF60066F14E /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357C62DE78BF60066F14E /* FeedKit */; };
+		3A0357C92DE78BF60066F14E /* XMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357C82DE78BF60066F14E /* XMLKit */; };
 		3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424D12DE779DC000D58DA /* UnifeedApp.swift */; };
 		3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D52DE779DE000D58DA /* Assets.xcassets */; };
 		3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */; };
@@ -80,6 +82,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0357BF2DE782EE0066F14E /* AlertToast in Frameworks */,
+				3A0357C92DE78BF60066F14E /* XMLKit in Frameworks */,
+				3A0357C72DE78BF60066F14E /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +232,8 @@
 			name = Unifeed;
 			packageProductDependencies = (
 				3A0357BE2DE782EE0066F14E /* AlertToast */,
+				3A0357C62DE78BF60066F14E /* FeedKit */,
+				3A0357C82DE78BF60066F14E /* XMLKit */,
 			);
 			productName = Unifeed;
 			productReference = 3A5424CE2DE779DC000D58DA /* Unifeed.app */;
@@ -303,6 +309,7 @@
 			mainGroup = 3A5424C52DE779DC000D58DA;
 			packageReferences = (
 				3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */,
+				3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = 3A5424CF2DE779DC000D58DA /* Products */;
 			projectDirPath = "";
@@ -731,6 +738,14 @@
 				minimumVersion = 1.3.9;
 			};
 		};
+		3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -738,6 +753,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		3A0357C62DE78BF60066F14E /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
+		};
+		3A0357C82DE78BF60066F14E /* XMLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = XMLKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

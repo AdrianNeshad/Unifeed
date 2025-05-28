@@ -26,6 +26,11 @@ struct Unifeed_Index: View {
             .navigationTitle(appLanguage == "sv" ? "Nyheter" : "News")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: Category()) {
+                        Image(systemName: "square.grid.2x2")
+                        }
+                    }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: Location()) {
                         Image(systemName: "map")
                         }
