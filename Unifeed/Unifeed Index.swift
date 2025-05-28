@@ -13,6 +13,7 @@ struct Unifeed_Index: View {
     @AppStorage("adsRemoved") private var adsRemoved = false
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
+    @State private var showingPopover: Bool = false
     
     var body: some View {
         NavigationView {
