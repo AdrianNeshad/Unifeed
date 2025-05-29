@@ -13,7 +13,7 @@ struct NativeAdViewRepresentable: UIViewRepresentable {
         Coordinator()
     }
 
-    func makeUIView(context: Context) -> GADNativeAdView {
+    func makeUIView(context: Context) -> NativeAdView {
         // Ladda XIB som är kopplad till CustomNativeAdView
         guard let adView = Bundle.main.loadNibNamed("NativeAdView", owner: nil, options: nil)?.first as? CustomNativeAdView else {
             fatalError("Kunde inte ladda NativeAdView.xib")
@@ -26,7 +26,7 @@ struct NativeAdViewRepresentable: UIViewRepresentable {
             .first { $0.isKeyWindow }?.rootViewController
 
         // Skapa och konfigurera AdLoader
-        let adLoader = GADAdLoader(
+        let adLoader = AdLoader(
             adUnitID: "ca-app-pub-3940256099942544/3986624511", // ← Byt till ditt eget ID vid release
             rootViewController: rootViewController,
             adTypes: [.native],
@@ -35,19 +35,19 @@ struct NativeAdViewRepresentable: UIViewRepresentable {
 
         context.coordinator.adView = adView
         adLoader.delegate = context.coordinator
-        adLoader.load(GADRequest())
+        adLoader.load(Request())
 
         return adView
     }
 
-    func updateUIView(_ uiView: GADNativeAdView, context: Context) {
+    func updateUIView(_ uiView: NativeAdView, context: Context) {
         // Behöver inte uppdateras
     }
 
-    class Coordinator: NSObject, GADNativeAdLoaderDelegate {
-        var adView: GADNativeAdView?
+    class Coordinator: NSObject, NativeAdLoaderDelegate {
+        var adView: NativeAdView?
 
-        func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+        func adLoader(_ adLoader: AdLoader, didReceive nativeAd: NativeAd) {
             guard let adView = adView as? CustomNativeAdView else { return }
 
             (adView.headlineLabel)?.text = nativeAd.headline
@@ -67,7 +67,7 @@ struct NativeAdViewRepresentable: UIViewRepresentable {
             adView.callToActionButton.isHidden = false
         }
 
-        func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
+        func adLoader(_ adLoader: AdLoader, didFailToReceiveAdWithError error: Error) {
             print("❌ Misslyckades att ladda native ad: \(error.localizedDescription)")
         }
     }

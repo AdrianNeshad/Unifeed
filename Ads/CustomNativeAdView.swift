@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 
-class CustomNativeAdView: GADNativeAdView {
+class CustomNativeAdView: NativeAdView {
     @IBOutlet weak var headlineLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var callToActionButton: UIButton!
