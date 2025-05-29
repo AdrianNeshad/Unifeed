@@ -1,0 +1,90 @@
+{
+  "identifier" : "E4A9EAA1",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "19.0",
+      "familyShareable" : false,
+      "internalID" : "6746576902",
+      "localizations" : [
+        {
+          "description" : "Reklamfri upplevelse",
+          "displayName" : "Reklamfritt",
+          "locale" : "sv"
+        },
+        {
+          "description" : "Ad-free experience",
+          "displayName" : "Ad-free",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "Unifeed.AdsRemoved",
+      "referenceName" : "AdsRemoved",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6746576849",
+    "_developerTeamID" : "U4LPX7NYV2",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 770231850.61282301,
+    "_locale" : "sv",
+    "_storefront" : "SWE",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

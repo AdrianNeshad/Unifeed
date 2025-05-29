@@ -42,7 +42,7 @@ class StoreManager: NSObject, ObservableObject, SKProductsRequestDelegate, SKPay
             switch transaction.transactionState {
             case .purchased, .restored:
                 DispatchQueue.main.async {
-                    UserDefaults.standard.set(true, forKey: "adsRemoved") //ändra möjlgitvis
+                    UserDefaults.standard.set(true, forKey: "adsRemoved")
                     self.transactionState = transaction.transactionState
                 }
                 queue.finishTransaction(transaction)

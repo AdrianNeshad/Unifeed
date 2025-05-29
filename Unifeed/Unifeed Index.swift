@@ -10,7 +10,7 @@ import SwiftUI
 struct Unifeed_Index: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("appLanguage") private var appLanguage = "sv"
-    @AppStorage("adsRemoved") private var adsRemoved = false
+    @AppStorage("AdsRemoved") private var AdsRemoved = false
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
     @State private var showingSheet = false

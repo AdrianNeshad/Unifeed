@@ -135,7 +135,7 @@ struct Settings: View {
         }
         .navigationTitle(appLanguage == "sv" ? "Inställningar" : "Settings")
         .onAppear {
-            storeManager.getProducts(productIDs: ["Unifeed.Adfree"]) //Ändra
+            storeManager.getProducts(productIDs: ["Unifeed.AdsRemoved"])
         }
         .toast(isPresenting: $showToast) {
             AlertToast(type: .complete(Color.green), title: toastMessage)

@@ -31,6 +31,7 @@
 		3A5424E42DE779DF000D58DA /* UnifeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424E32DE779DF000D58DA /* UnifeedTests.swift */; };
 		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
+		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		3A5424E92DE779DF000D58DA /* UnifeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnifeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITests.swift; sourceTree = "<group>"; };
 		3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 			children = (
 				3A0357AA2DE77DE90066F14E /* PurchaseView.swift */,
 				3A0357AC2DE77DF40066F14E /* StoreManager.swift */,
+				3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */,
 			);
 			path = "in-app purchase";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0357A12DE77CF80066F14E /* Launch Screen.storyboard in Resources */,
+				3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */,
 				3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */,
 				3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */,
 			);
