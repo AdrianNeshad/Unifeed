@@ -14,60 +14,81 @@ struct Unifeed_Index: View {
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
     @State private var showingSheet = false
-    @State private var selectedLink: URL? = nil
+    @State private var selectedLink: IdentifiableURL? = nil
+    @State private var showingCategoryPicker = false
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack(spacing: 0) { 
+                LazyVStack {
                     ForEach(viewModel.newsItems) { item in
                         NewsItemView(newsItem: item)
                             .padding(.horizontal)
                             .onTapGesture {
                                 if let link = item.link {
-                                    selectedLink = link
-                                    showingSheet = true
-                                    }
+                                    selectedLink = IdentifiableURL(url: link)
+                                }
                             }
                     }
                 }
             }
-            .sheet(isPresented: $showingSheet) {
-                if let url = selectedLink {
-                    SafariView(url: url)
-                } else {
-                    Text("Ingen länk tillgänglig")
-                        .padding()
-                }
+            .sheet(item: $selectedLink) { wrapped in
+                SafariView(url: wrapped.url)
             }
             .refreshable {
                 viewModel.loadNews()
             }
-            .navigationTitle(appLanguage == "sv" ? "Nyheter" : "News")
+            .navigationTitle(viewModel.currentCategory.localizedName(language: appLanguage))
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Category()) {
-                        Image(systemName: "square.grid.2x2")
-                        }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingCategoryPicker = true
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
                     }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: Location()) {
                         Image(systemName: "map")
-                        }
                     }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: Settings()) {
                         Image(systemName: "gearshape")
+                    }
+                }
+            }
+
+            .preferredColorScheme(isDarkMode ? .dark : .light)
+            .sheet(isPresented: $showingCategoryPicker) {
+                NavigationView {
+                    List(Category.allCases) { category in
+                        Button {
+                            viewModel.currentCategory = category
+                            showingCategoryPicker = false
+                        } label: {
+                            HStack {
+                                Text(category.localizedName(language: appLanguage)) 
+                                if viewModel.currentCategory == category {
+                                    Spacer()
+                                    Image(systemName: "checkmark")
+                                }
+                            }
                         }
                     }
+                    .navigationTitle(appLanguage == "sv" ? "Välj kategori" : "Choose Category")
+                }
             }
-            .preferredColorScheme(isDarkMode ? .dark : .light)
-            .onAppear {
-                viewModel.loadNews()
-            }
+
         }
     }
 }
+
+struct IdentifiableURL: Identifiable {
+    let id = UUID()
+    let url: URL
+}
+
 
 #Preview {
     Unifeed_Index()

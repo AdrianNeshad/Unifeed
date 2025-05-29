@@ -24,6 +24,7 @@
 		3A0357C42DE787200066F14E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357C32DE787200066F14E /* Category.swift */; };
 		3A0357C72DE78BF60066F14E /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357C62DE78BF60066F14E /* FeedKit */; };
 		3A0357C92DE78BF60066F14E /* XMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0357C82DE78BF60066F14E /* XMLKit */; };
+		3A1C28942DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C28932DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift */; };
 		3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424D12DE779DC000D58DA /* UnifeedApp.swift */; };
 		3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D52DE779DE000D58DA /* Assets.xcassets */; };
 		3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		3A0357BB2DE782A00066F14E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		3A0357C02DE786A70066F14E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3A0357C32DE787200066F14E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		3A1C28932DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTMLDecoding.swift .swift"; sourceTree = "<group>"; };
 		3A5424CE2DE779DC000D58DA /* Unifeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unifeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5424D12DE779DC000D58DA /* UnifeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedApp.swift; sourceTree = "<group>"; };
 		3A5424D52DE779DE000D58DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				3A0357AF2DE77E6A0066F14E /* Language.swift */,
 				3A0357B12DE77F050066F14E /* MailFeedback.swift */,
 				3A0357BB2DE782A00066F14E /* AppVersion.swift */,
+				3A1C28932DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */,
 				3A0357C12DE786A70066F14E /* Location.swift in Sources */,
 				3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */,
+				3A1C28942DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift in Sources */,
 				3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */,
 				3A0357B62DE780020066F14E /* RSSFetcher.swift in Sources */,
 				3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */,

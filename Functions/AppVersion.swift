@@ -14,7 +14,7 @@ struct AppVersion: View {
         } footer: {
             VStack(spacing: 4) {
                 Text(appVersion)
-                Text("© 2025 Univert App")
+                Text("© 2025 Unifeed App")
                 Text("Github.com/AdrianNeshad")
                 Text("Linkedin.com/in/adrian-neshad")
             }

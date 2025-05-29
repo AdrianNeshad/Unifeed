@@ -10,45 +10,41 @@ import Combine
 
 class NewsViewModel: ObservableObject {
     @Published var newsItems: [NewsItem] = []
-    
-    private let rssFetcher = RSSFetcher()
-    
-    private let sources: [NewsSource] = [
-        NewsSource(name: "Polisen", logoURL: nil, emoji: "👮🏼‍♂️"),
-        NewsSource(name: "Folkhälsomyndigheten", logoURL: URL(string: "https://www.folkhalsomyndigheten.se/favicon.ico"), emoji: nil),
-    ]
-    
+
+    @Published var currentCategory: Category = .myndighet {
+        didSet {
+            loadNews()
+        }
+    }
+
+    init() {
+        loadNews()
+    }
+
     func loadNews() {
         newsItems = []
         let group = DispatchGroup()
         var allItems: [NewsItem] = []
         var errors: [Error] = []
-        
+
+        let sources = currentCategory.sources
+
         for source in sources {
             guard let feedURL = feedURL(for: source.name) else { continue }
-            
+
+            let rssFetcher = RSSFetcher()
             group.enter()
-            rssFetcher.fetchFeed(from: feedURL) { result in
+            rssFetcher.fetchFeed(from: feedURL, source: source) { result in
                 switch result {
                 case .success(let items):
-                    let itemsWithSource = items.map { item in
-                        NewsItem(
-                            title: item.title,
-                            description: item.description,
-                            imageURL: item.imageURL,
-                            source: source,
-                            pubDate: item.pubDate,
-                            link: item.link
-                        )
-                    }
-                    allItems.append(contentsOf: itemsWithSource)
+                    allItems.append(contentsOf: items)
                 case .failure(let error):
                     errors.append(error)
                 }
                 group.leave()
             }
         }
-        
+
         group.notify(queue: .main) {
             var seen = Set<String>()
             let uniqueItems = allItems.filter { item in
@@ -68,38 +64,20 @@ class NewsViewModel: ObservableObject {
         }
     }
 
-    
     private func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
         case "Polisen":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
         case "Folkhälsomyndigheten":
             return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
+        case "Aftonbladet":
+            return URL(string: "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/")
+        case "Dagens Industri":
+            return URL(string: "https://www.dn.se/rss/")
+        case "Fotbollskanalen":
+            return URL(string: "https://www.fotbollskanalen.se/rss/")
         default:
             return nil
         }
     }
-    
-    init(mock: Bool = false) {
-            if mock {
-                newsItems = [
-                    NewsItem(
-                        title: "Exempelnyhet 1",
-                        description: "Det här är en exempelbeskrivning.",
-                        imageURL: nil,
-                        source: NewsSource(name: "Mockkälla", logoURL: nil, emoji: nil),
-                        pubDate: Date(),
-                        link: URL(string: "https://exempel.se/nyhet1")
-                    ),
-                    NewsItem(
-                        title: "Exempelnyhet 2",
-                        description: "Andra exemplet på nyhetstext.",
-                        imageURL: nil,
-                        source: NewsSource(name: "Mockkälla 2", logoURL: nil, emoji: nil),
-                        pubDate: Date().addingTimeInterval(-3600),
-                        link: URL(string: "https://exempel.se/nyhet2")
-                    )
-                ]
-            }
-        }
 }

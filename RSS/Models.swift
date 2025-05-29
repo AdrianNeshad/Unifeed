@@ -10,8 +10,7 @@ import Foundation
 struct NewsSource: Identifiable {
     let id = UUID()
     let name: String
-    let logoURL: URL?
-    let emoji: String?
+    let logo: String?
 }
 
 struct NewsItem: Identifiable {

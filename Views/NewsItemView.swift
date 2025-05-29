@@ -8,55 +8,65 @@
 import SwiftUI
 
 struct NewsItemView: View {
-    let newsItem: NewsItem
     @AppStorage("isDarkMode") private var isDarkMode = true
+    @AppStorage("appLanguage") private var appLanguage = "sv"
 
+    let newsItem: NewsItem
+    
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack {
-                if let emoji = newsItem.source.emoji {
-                    Text(emoji)
-                        .font(.system(size: 20)) 
+                if let logo = newsItem.source.logo {
+                    Image(logo)
+                        .resizable()
                         .frame(width: 30, height: 30)
-                } else if let logoURL = newsItem.source.logoURL {
-                    AsyncImage(url: logoURL) { image in
-                        image.resizable()
-                             .frame(width: 30, height: 30)
-                             .clipShape(Circle())
-                    } placeholder: {
-                        ProgressView()
-                            .frame(width: 30, height: 30)
-                    }
+                        .clipShape(Circle())
                 } else {
-                    // Fallback ifall varken emoji eller logoURL finns
                     Image(systemName: "photo")
                         .frame(width: 30, height: 30)
                         .foregroundColor(.gray)
                 }
-                
                 Text(newsItem.source.name)
                     .font(.headline)
+                Spacer()
+
+                if let date = newsItem.pubDate {
+                    VStack {
+                        Text(dateFormatted(date))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    .padding(.top, -5) // Justera denna siffra för mer/färre pixlar uppåt
+                }
             }
             .padding([.top, .horizontal])
-            
+            .padding(.bottom, 5)
+
             if let imageURL = newsItem.imageURL {
                 AsyncImage(url: imageURL) { image in
-                    image.resizable()
-                         .aspectRatio(contentMode: .fill)
-                         .frame(height: 100)
-                         .clipped()
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+                        .clipped()
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 } placeholder: {
                     Rectangle()
                         .foregroundColor(.gray.opacity(0.3))
-                        .frame(height: 200)
+                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 }
             }
-            
+
+
             Text(newsItem.title)
                 .font(.title3)
                 .bold()
                 .padding(.horizontal)
-            
+
             Text(newsItem.description)
                 .font(.body)
                 .padding([.horizontal, .bottom])
@@ -71,5 +81,13 @@ struct NewsItemView: View {
                 )
         )
         .padding(.top, 20)
+    }
+
+    private func dateFormatted(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        formatter.locale = Locale(identifier: appLanguage == "sv" ? "sv_SE" : "en_US")
+        return formatter.string(from: date)
     }
 }
