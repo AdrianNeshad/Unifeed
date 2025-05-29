@@ -23,7 +23,7 @@ enum Category: String, CaseIterable, Identifiable {
         case .polisen: return "shield.lefthalf.fill"
         case .finans: return "dollarsign.circle"
         case .myndighet: return "building.columns"
-        case .fotboll: return "soccerball" // iOS 17+ – annars använd "sportscourt"
+        case .fotboll: return "soccerball"
         }
     }
     
@@ -48,7 +48,10 @@ enum Category: String, CaseIterable, Identifiable {
                 NewsSource(name: "Folkhälsomyndigheten", logo: "fhm_logo"),
                 NewsSource(name: "Krisinformation", logo: "ki_logo"),
                 NewsSource(name: "MSB", logo: "msb_logo"),
-                NewsSource(name: "Regeringen", logo: "regeringen_logo")
+                NewsSource(name: "Regeringen", logo: "regeringen_logo"),
+                NewsSource(name: "Skatteverket", logo: "skatteverket_logo"),
+                NewsSource(name: "Livsmedelsverket", logo: "livsmedelsverket_logo"),
+                NewsSource(name: "Läkemedelsverket", logo: "läkemedelsverket_logo"),
             ]
         case .finans:
             return [

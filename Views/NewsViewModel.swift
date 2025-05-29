@@ -93,7 +93,13 @@ class NewsViewModel: ObservableObject {
         case "MSB":
             return URL(string: "https://www.msb.se/sv/rss-floden/rss-alla-nyheter-fran-msb/")
         case "Regeringen":
-            return URL(string: "https://www.regeringen.se/Filter/RssFeed?filterType=Taxonomy&filterByType=FilterablePageBase&preFilteredCategories=1284%2C1285%2C1286%2C1287%2C1288%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C2425&rootPageReference=0&filteredContentCategories=2204%2C1334%2C2214&filteredPoliticalLevelCategories=&filteredPoliticalAreaCategories=&filteredPublisherCategories=1295%2C1296%2C1297")
+            return URL(string: "https://www.regeringen.se/Filter/RssFeed?filterType=Taxonomy&filterByType=FilterablePageBase&preFilteredCategories=1284%2C1285%2C1286%2C1287%2C1288%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C2425&rootPageReference=0&filteredContentCategories=1334&filteredPoliticalLevelCategories=&filteredPoliticalAreaCategories=&filteredPublisherCategories=1296")
+        case "Skatteverket":
+            return URL(string: "https://skatteverket.se/4.dfe345a107ebcc9baf800017652/12.dfe345a107ebcc9baf800017658.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8")
+        case "Livsmedelsverket":
+            return URL(string: "https://www.livsmedelsverket.se/rss/rss-pressmeddelanden")
+        case "Läkemedelsverket":
+            return URL(string: "https://www.lakemedelsverket.se/api/newslist/newsrss?query=&pageTypeId=1&from=&to=")
         default:
             return nil
         }
