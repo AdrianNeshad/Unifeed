@@ -32,6 +32,7 @@
 		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
+		3A6C800F2DE8D19B006EE796 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3A6C800E2DE8D19B006EE796 /* GoogleMobileAds */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A6C800F2DE8D19B006EE796 /* GoogleMobileAds in Frameworks */,
 				3A0357BF2DE782EE0066F14E /* AlertToast in Frameworks */,
 				3A0357C92DE78BF60066F14E /* XMLKit in Frameworks */,
 				3A0357C72DE78BF60066F14E /* FeedKit in Frameworks */,
@@ -243,6 +245,7 @@
 				3A0357BE2DE782EE0066F14E /* AlertToast */,
 				3A0357C62DE78BF60066F14E /* FeedKit */,
 				3A0357C82DE78BF60066F14E /* XMLKit */,
+				3A6C800E2DE8D19B006EE796 /* GoogleMobileAds */,
 			);
 			productName = Unifeed;
 			productReference = 3A5424CE2DE779DC000D58DA /* Unifeed.app */;
@@ -319,6 +322,7 @@
 			packageReferences = (
 				3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */,
 				3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */,
+				3A6C800D2DE8D19B006EE796 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 3A5424CF2DE779DC000D58DA /* Products */;
 			projectDirPath = "";
@@ -758,6 +762,14 @@
 				minimumVersion = 10.0.1;
 			};
 		};
+		3A6C800D2DE8D19B006EE796 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -775,6 +787,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = XMLKit;
+		};
+		3A6C800E2DE8D19B006EE796 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A6C800D2DE8D19B006EE796 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
