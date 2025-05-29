@@ -47,9 +47,11 @@ struct Unifeed_Index: View {
                         Image(systemName: "line.3.horizontal")
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Location()) {
-                        Image(systemName: "map")
+                if viewModel.currentCategory == .polisen {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: Location()) {
+                            Image(systemName: "map")
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -68,7 +70,8 @@ struct Unifeed_Index: View {
                             showingCategoryPicker = false
                         } label: {
                             HStack {
-                                Text(category.localizedName(language: appLanguage)) 
+                                Image(systemName: category.iconName)
+                                Text(category.localizedName(language: appLanguage))
                                 if viewModel.currentCategory == category {
                                     Spacer()
                                     Image(systemName: "checkmark")

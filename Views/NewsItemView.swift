@@ -80,7 +80,7 @@ struct NewsItemView: View {
                         .stroke(isDarkMode ? Color.gray.opacity(0.5) : Color.black, lineWidth: 1)
                 )
         )
-        .padding(.top, 20)
+        .padding(.top, 10)
     }
 
     private func dateFormatted(_ date: Date) -> String {

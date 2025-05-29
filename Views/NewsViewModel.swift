@@ -63,8 +63,8 @@ class NewsViewModel: ObservableObject {
             }
         }
     }
-
-    private func feedURL(for sourceName: String) -> URL? {
+    
+    func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
         case "Polisen":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
@@ -76,6 +76,24 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://www.dn.se/rss/")
         case "Fotbollskanalen":
             return URL(string: "https://www.fotbollskanalen.se/rss/")
+        case "FotbollsExpressen":
+            return URL(string: "https://feeds.expressen.se/fotboll/")
+        case "Expressen":
+            return URL(string: "https://feeds.expressen.se/nyheter/")
+        case "SportExpressen":
+            return URL(string: "https://feeds.expressen.se/sport/")
+        case "Svenska Dagbladet":
+            return URL(string: "svd.se/feed/articles.rss")
+        case "TV4":
+            return URL(string: "tv4.se/rss")
+        case "SVT":
+            return URL(string: "svt.se/rss.xml")
+        case "Krisinformation":
+            return URL(string: "https://www.krisinformation.se/nyheter?rss=true")
+        case "MSB":
+            return URL(string: "https://www.msb.se/sv/rss-floden/rss-alla-nyheter-fran-msb/")
+        case "Regeringen":
+            return URL(string: "https://www.regeringen.se/Filter/RssFeed?filterType=Taxonomy&filterByType=FilterablePageBase&preFilteredCategories=1284%2C1285%2C1286%2C1287%2C1288%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C2425&rootPageReference=0&filteredContentCategories=2204%2C1334%2C2214&filteredPoliticalLevelCategories=&filteredPoliticalAreaCategories=&filteredPublisherCategories=1295%2C1296%2C1297")
         default:
             return nil
         }
