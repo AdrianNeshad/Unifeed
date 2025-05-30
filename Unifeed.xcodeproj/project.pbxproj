@@ -333,7 +333,6 @@
 			packageReferences = (
 				3A0357BD2DE782EE0066F14E /* XCRemoteSwiftPackageReference "AlertToast" */,
 				3A0357C52DE78BF60066F14E /* XCRemoteSwiftPackageReference "FeedKit" */,
-				3A6C800D2DE8D19B006EE796 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 3A5424CF2DE779DC000D58DA /* Products */;
 			projectDirPath = "";
@@ -779,14 +778,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.0.1;
-			};
-		};
-		3A6C800D2DE8D19B006EE796 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
