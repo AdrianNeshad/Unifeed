@@ -29,14 +29,6 @@ struct Unifeed_Index: View {
                                     selectedLink = IdentifiableURL(url: link)
                                 }
                             }
-
-                        // Visa NativeAd efter var 3:e nyhetskort (men bara om ads inte är bortköpta)
-                /*        if index % 5 == 4 && !AdsRemoved {
-                            NativeAdViewRepresentable()
-                                .frame(height: 300)
-                                .padding(.horizontal)
-                                .padding(.bottom)
-                        } */
                     }
                 }
             }

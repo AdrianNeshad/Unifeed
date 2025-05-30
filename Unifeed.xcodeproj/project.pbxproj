@@ -32,10 +32,6 @@
 		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
-		3A7392762DE8DCF400542400 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7392752DE8DCF400542400 /* AppDelegate.swift */; };
-		3A7392782DE8DDD200542400 /* NativeAdViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7392772DE8DDD200542400 /* NativeAdViewRepresentable.swift */; };
-		3A73927A2DE8DFE200542400 /* CustomNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7392792DE8DFE200542400 /* CustomNativeAdView.swift */; };
-		3A73927C2DE8E03000542400 /* CustomNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A73927B2DE8E03000542400 /* CustomNativeAdView.xib */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,10 +80,6 @@
 		3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		3A7392742DE8DB7F00542400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		3A7392752DE8DCF400542400 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A7392772DE8DDD200542400 /* NativeAdViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdViewRepresentable.swift; sourceTree = "<group>"; };
-		3A7392792DE8DFE200542400 /* CustomNativeAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNativeAdView.swift; sourceTree = "<group>"; };
-		3A73927B2DE8E03000542400 /* CustomNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNativeAdView.xib; sourceTree = "<group>"; };
 		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,10 +123,6 @@
 		3A0357A52DE77D300066F14E /* Ads */ = {
 			isa = PBXGroup;
 			children = (
-				3A7392752DE8DCF400542400 /* AppDelegate.swift */,
-				3A7392772DE8DDD200542400 /* NativeAdViewRepresentable.swift */,
-				3A73927B2DE8E03000542400 /* CustomNativeAdView.xib */,
-				3A7392792DE8DFE200542400 /* CustomNativeAdView.swift */,
 			);
 			path = Ads;
 			sourceTree = "<group>";
@@ -352,7 +340,6 @@
 			files = (
 				3A0357A12DE77CF80066F14E /* Launch Screen.storyboard in Resources */,
 				3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */,
-				3A73927C2DE8E03000542400 /* CustomNativeAdView.xib in Resources */,
 				3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */,
 				3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */,
 			);
@@ -388,16 +375,13 @@
 				3A0357C12DE786A70066F14E /* Location.swift in Sources */,
 				3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */,
 				3A1C28942DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift in Sources */,
-				3A73927A2DE8DFE200542400 /* CustomNativeAdView.swift in Sources */,
 				3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */,
 				3A0357B62DE780020066F14E /* RSSFetcher.swift in Sources */,
 				3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */,
 				3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */,
 				3A0357AB2DE77DE90066F14E /* PurchaseView.swift in Sources */,
 				3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */,
-				3A7392762DE8DCF400542400 /* AppDelegate.swift in Sources */,
 				3A0357C42DE787200066F14E /* Category.swift in Sources */,
-				3A7392782DE8DDD200542400 /* NativeAdViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
