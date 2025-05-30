@@ -14,6 +14,7 @@ struct Settings: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("appLanguage") private var appLanguage = "sv"
     @AppStorage("adsRemoved") private var adsRemoved = false
+    @State private var showShareSheet = false
 
     @EnvironmentObject var viewModel: NewsViewModel
 
@@ -116,10 +117,22 @@ struct Settings: View {
                 }
             }
             */
-            Section(header: Text(appLanguage == "sv" ? "Feedback" : "Feedback")) {
+            Section(header: Text(appLanguage == "sv" ? "Om" : "About")) {
                 Button(appLanguage == "sv" ? "Betygsätt appen" : "Rate the App") {
                     requestReview()
                 }
+                Button(appLanguage == "sv" ? "Dela appen" : "Share the App") {
+                    showShareSheet = true
+                }
+                .sheet(isPresented: $showShareSheet) {
+                    let message = appLanguage == "sv"
+                        ? "Kolla in nyhetsappen Unifeed! 📲"
+                        : "Check out the Unifeed news app! 📲"
+                    let appLink = URL(string: "https://apps.apple.com/us/app/unifeed/id6746576849")!
+                    ShareSheet(activityItems: [message, appLink])
+                        .presentationDetents([.medium])
+                }
+
                 Button(appLanguage == "sv" ? "Ge feedback" : "Give Feedback") {
                     if MFMailComposeViewController.canSendMail() {
                         showMailFeedback = true

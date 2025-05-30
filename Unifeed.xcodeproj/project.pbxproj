@@ -33,6 +33,7 @@
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
+		3A84BC8D2DEA663600AB85C6 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84BC8C2DEA663600AB85C6 /* ShareSheet.swift */; };
 		3AEC3EB82DEA03E3004E61D8 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC3EB72DEA03E2004E61D8 /* Filter.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		3A7392742DE8DB7F00542400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		3A84BC8C2DEA663600AB85C6 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		3AEC3EB72DEA03E2004E61D8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				3A0357B12DE77F050066F14E /* MailFeedback.swift */,
 				3A0357BB2DE782A00066F14E /* AppVersion.swift */,
 				3A1C28932DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift */,
+				3A84BC8C2DEA663600AB85C6 /* ShareSheet.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				3A0357B02DE77E6A0066F14E /* Language.swift in Sources */,
 				3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */,
 				3A0357C12DE786A70066F14E /* Location.swift in Sources */,
+				3A84BC8D2DEA663600AB85C6 /* ShareSheet.swift in Sources */,
 				3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */,
 				3A1C28942DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift in Sources */,
 				3A0357BA2DE7805B0066F14E /* NewsItemView.swift in Sources */,

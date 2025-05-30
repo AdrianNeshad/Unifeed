@@ -19,7 +19,7 @@ enum Category: String, CaseIterable, Identifiable {
     var iconName: String {
         switch self {
         case .noje: return "newspaper"
-        case .sport: return "sportscourt"
+        case .sport: return "figure.run"
         case .polisen: return "shield.lefthalf.fill"
         case .finans: return "dollarsign.circle"
         case .myndighet: return "building.columns"

@@ -94,6 +94,7 @@ struct Unifeed_Index: View {
                             HStack {
                                 Image(systemName: category.iconName)
                                 Text(category.localizedName(language: appLanguage))
+                                    .foregroundColor(.primary)
                                 if viewModel.currentCategory == category {
                                     Spacer()
                                     Image(systemName: "checkmark")
