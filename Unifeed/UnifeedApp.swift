@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct UnifeedApp: App {
     @AppStorage("isDarkMode") private var isDarkMode = true
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+  /*  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate */
     
     var body: some Scene {
         WindowGroup {

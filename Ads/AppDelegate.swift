@@ -4,7 +4,7 @@
 //
 //  Created by Adrian Neshad on 2025-05-29.
 //
-
+/*
 import Foundation
 import GoogleMobileAds
 
@@ -18,3 +18,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 }
+*/

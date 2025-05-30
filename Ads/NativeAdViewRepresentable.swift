@@ -4,7 +4,7 @@
 //
 //  Created by Adrian Neshad on 2025-05-29.
 //
-
+/*
 import SwiftUI
 import GoogleMobileAds
 
@@ -72,3 +72,4 @@ struct NativeAdViewRepresentable: UIViewRepresentable {
         }
     }
 }
+*/

@@ -31,12 +31,12 @@ struct Unifeed_Index: View {
                             }
 
                         // Visa NativeAd efter var 3:e nyhetskort (men bara om ads inte är bortköpta)
-                        if index % 5 == 4 && !AdsRemoved {
+                /*        if index % 5 == 4 && !AdsRemoved {
                             NativeAdViewRepresentable()
                                 .frame(height: 300)
                                 .padding(.horizontal)
                                 .padding(.bottom)
-                        }
+                        } */
                     }
                 }
             }
