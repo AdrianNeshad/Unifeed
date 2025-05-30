@@ -21,10 +21,6 @@ struct NewsItemView: View {
                         .resizable()
                         .frame(width: 30, height: 30)
                         .clipShape(Circle())
-                } else {
-                    Image(systemName: "photo")
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.gray)
                 }
                 Text(newsItem.source.name)
                     .font(.headline)
@@ -69,7 +65,7 @@ struct NewsItemView: View {
 
             Text(newsItem.description)
                 .font(.body)
-                .lineLimit(15)
+                .lineLimit(12)
                 .padding([.horizontal, .bottom])
         }
         .frame(maxWidth: .infinity, alignment: .leading)

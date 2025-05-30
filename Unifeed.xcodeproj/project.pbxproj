@@ -33,7 +33,6 @@
 		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
-		3A87FBF92DEA119D00792762 /* PoliceFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FBF82DEA119D00792762 /* PoliceFeed.swift */; };
 		3AEC3EB82DEA03E3004E61D8 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEC3EB72DEA03E2004E61D8 /* Filter.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +82,6 @@
 		3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		3A7392742DE8DB7F00542400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		3A87FBF82DEA119D00792762 /* PoliceFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceFeed.swift; sourceTree = "<group>"; };
 		3AEC3EB72DEA03E2004E61D8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +118,6 @@
 			children = (
 				3A0357B32DE77FEA0066F14E /* Models.swift */,
 				3A0357B52DE780020066F14E /* RSSFetcher.swift */,
-				3A87FBF82DEA119D00792762 /* PoliceFeed.swift */,
 			);
 			path = RSS;
 			sourceTree = "<group>";
@@ -389,7 +386,6 @@
 				3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */,
 				3A0357C42DE787200066F14E /* Category.swift in Sources */,
 				3AEC3EB82DEA03E3004E61D8 /* Filter.swift in Sources */,
-				3A87FBF92DEA119D00792762 /* PoliceFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

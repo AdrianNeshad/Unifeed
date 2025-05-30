@@ -47,10 +47,17 @@ class NewsViewModel: ObservableObject {
         let allNames = currentCategory.sources.map { $0.name }
         let validSaved = saved.filter { allNames.contains($0) }
 
-        if validSaved.isEmpty {
-            activeSources = Set(allNames)
-        } else {
+        if !validSaved.isEmpty {
             activeSources = Set(validSaved)
+        } else {
+            if currentCategory == .polisen {
+                // Endast de tre första nationella flödena aktiva
+                let defaultSources = currentCategory.sources.prefix(3).map { $0.name }
+                activeSources = Set(defaultSources)
+            } else {
+                // Alla flöden valda som default för övriga kategorier
+                activeSources = Set(allNames)
+            }
         }
     }
 
@@ -104,8 +111,14 @@ class NewsViewModel: ObservableObject {
 
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
-        case "Polisen":
-            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/handelser-i-hela-landet/")
+        case "Press":
+            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/press-rss---nationella/")
+        case "Pressmeddelanden":
+            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/pressmeddelanden-hela-landet/")
+        case "Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/nyheter-hela-landet/")
+            
+            
         case "Folkhälsomyndigheten":
             return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
         case "Aftonbladet":
@@ -138,8 +151,207 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://www.livsmedelsverket.se/rss/rss-pressmeddelanden")
         case "Läkemedelsverket":
             return URL(string: "https://www.lakemedelsverket.se/api/newslist/newsrss?query=&pageTypeId=1&from=&to=")
+            
+            //Region Nord
+        case "Jämtland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/jamtland/nyheter-rss---jamtland/")
+        case "Jämtland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/jamtland/handalser-rss---jamtland/")
+        case "Västerbotten - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/vasterbotten/nyheter-rss---vasterbotten/")
+        case "Västerbotten - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/vasterbotten/handalser-rss---vasterbotten/")
+        case "Norrbotten - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/norrbotten/nyheter-rss---norrbotten/")
+        case "Norrbotten - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/norrbotten/handalser-rss---norrbotten/")
+        case "Västernorrland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/vasternorrland/nyheter-rss---vasternorrland/")
+        case "Västernorrland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/vasternorrland/handalser-rss---vasternorrland/")
+            
+        // Region Mitt
+        case "Gävleborg - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/gavleborg/nyheter-rss---gavleborg/")
+        case "Gävleborg - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/gavleborg/handelser-rss---gavleborg/")
+        case "Uppsala - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/uppsala-lan/nyheter-rss---uppsala-lan/")
+        case "Uppsala - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/uppsala-lan/handelser-rss---uppsala-lan/")
+        case "Västmanland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/vastmanland/nyheter-rss---vastmanland/")
+        case "Västmanland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/vastmanland/handalser-rss---vastmanland/")
+            
+        // Region Stockholm
+        case "Stockholm - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/stockholms-lan/nyheter-rss---stockholms-lan/")
+        case "Stockholm - Händelser":
+            return URL(string:"https://polisen.se/aktuellt/rss/stockholms-lan/handalser-rss---stockholms-lan/")
+        case "Gotland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/gotland/nyheter-rss---gotland/")
+        case "Gotland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/gotland/handalser-rss---gotland/")
+
+            // Region Öst
+        case "Södermanland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/sodermanland/nyheter-rss---sodermanland/")
+        case "Södermanland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/sodermanland/handalser-rss---sodermanland/")
+        case "Östergötland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/ostergotland/nyheter-rss---ostergotland/")
+        case "Östergötland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/ostergotland/handalser-rss---ostergotland/")
+        case "Jönköping - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/jonkopings-lan/nyheter-rss---jonkopings-lan/")
+        case "Jönköping - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/jonkopings-lan/handalser-rss---jonkopings-lan/")
+
+            // Region Väst
+        case "Halland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/halland/nyheter-rss---halland/")
+        case "Halland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/halland/handalser-rss---halland/")
+        case "Västra Götaland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/vastra-gotaland/nyheter-rss---vastra-gotaland/")
+        case "Västra Götaland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/vastra-gotaland/handalser-rss---vastra-gotaland/")
+
+            // Region Syd
+        case "Skåne - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/skane/nyheter-rss---skane/")
+        case "Skåne - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/skane/handalser-rss---skane/")
+        case "Blekinge - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/blekinge/nyheter-rss---blekinge/")
+        case "Blekinge - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/blekinge/handalser-rss---blekinge/")
+        case "Kronoberg - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/kronoberg/nyheter-rss---kronoberg/")
+        case "Kronoberg - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/kronoberg/handalser-rss---kronoberg/")
+        case "Kalmar - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/kalmar-lan/nyheter-rss---kalmar-lan/")
+        case "Kalmar - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/kalmar-lan/handalser-rss---kalmar-lan/")
+
+            // Region Bergslagen
+        case "Värmland - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/varmland/nyheter-rss---varmland/")
+        case "Värmland - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/varmland/handalser-rss---varmland/")
+        case "Örebro - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/orebro-lan/nyheter-rss---orebro-lan/")
+        case "Örebro - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/orebro-lan/handalser-rss---orebro-lan/")
+        case "Dalarna - Nyheter":
+            return URL(string: "https://polisen.se/aktuellt/rss/dalarna/nyheter-rss---dalarna/")
+        case "Dalarna - Händelser":
+            return URL(string: "https://polisen.se/aktuellt/rss/dalarna/handalser-rss---dalarna/")
+
         default:
             return nil
         }
     }
 }
+
+/*
+    ],
+    "Region Mitt": [
+        PoliceFeed(title: "Gävleborg", urls: [
+            "https://polisen.se/aktuellt/rss/gavleborg/nyheter-rss---gavleborg/",
+            "https://polisen.se/aktuellt/rss/gavleborg/handelser-rss---gavleborg/"
+        ]),
+
+        PoliceFeed(title: "Uppsala", urls: [
+            "https://polisen.se/aktuellt/rss/uppsala-lan/nyheter-rss---uppsala-lan/",
+            "https://polisen.se/aktuellt/rss/uppsala-lan/handelser-rss---uppsala-lan/"
+        ]),
+
+        PoliceFeed(title: "Västmanland", urls: [
+            "https://polisen.se/aktuellt/rss/vastmanland/nyheter-rss---vastmanland/",
+            "https://polisen.se/aktuellt/rss/vastmanland/handalser-rss---vastmanland/"
+        ]),
+
+    ],
+    "Region Stockholm": [
+        PoliceFeed(title: "Stockholm", urls: [
+            "https://polisen.se/aktuellt/rss/stockholms-lan/nyheter-rss---stockholms-lan/",
+            "https://polisen.se/aktuellt/rss/stockholms-lan/handalser-rss---stockholms-lan/"
+        ]),
+
+        PoliceFeed(title: "Gotland", urls: [
+            "https://polisen.se/aktuellt/rss/gotland/nyheter-rss---gotland/",
+            "https://polisen.se/aktuellt/rss/gotland/handalser-rss---gotland/"
+        ]),
+
+    ],
+    "Region Öst": [
+        PoliceFeed(title: "Södermanland", urls: [
+            "https://polisen.se/aktuellt/rss/sodermanland/nyheter-rss---sodermanland/",
+            "https://polisen.se/aktuellt/rss/sodermanland/handalser-rss---sodermanland/"
+        ]),
+
+        PoliceFeed(title: "Östergötland", urls: [
+            "https://polisen.se/aktuellt/rss/ostergotland/nyheter-rss---ostergotland/",
+            "https://polisen.se/aktuellt/rss/ostergotland/handalser-rss---ostergotland/"
+        ]),
+
+        PoliceFeed(title: "Jönköping", urls: [
+            "https://polisen.se/aktuellt/rss/jonkopings-lan/nyheter-rss---jonkopings-lan/",
+            "https://polisen.se/aktuellt/rss/jonkopings-lan/handalser-rss---jonkopings-lan/"
+        ]),
+    ],
+    "Region Väst": [
+        PoliceFeed(title: "Halland", urls: [
+            "https://polisen.se/aktuellt/rss/halland/nyheter-rss---halland/",
+            "https://polisen.se/aktuellt/rss/halland/handalser-rss---halland/"
+        ]),
+
+        PoliceFeed(title: "Västra Götaland", urls: [
+            "https://polisen.se/aktuellt/rss/vastra-gotaland/nyheter-rss---vastra-gotaland/",
+            "https://polisen.se/aktuellt/rss/vastra-gotaland/handalser-rss---vastra-gotaland/"
+        ]),
+
+    ],
+    "Region Syd": [
+        PoliceFeed(title: "Skåne", urls: [
+            "https://polisen.se/aktuellt/rss/skane/nyheter-rss---skane/",
+            "https://polisen.se/aktuellt/rss/skane/handalser-rss---skane/"
+        ]),
+
+        PoliceFeed(title: "Blekinge", urls: [
+            "https://polisen.se/aktuellt/rss/blekinge/nyheter-rss---blekinge/",
+            "https://polisen.se/aktuellt/rss/blekinge/handalser-rss---blekinge/"
+        ]),
+
+        PoliceFeed(title: "Kronoberg", urls: [
+            "https://polisen.se/aktuellt/rss/kronoberg/nyheter-rss---kronoberg/",
+            "https://polisen.se/aktuellt/rss/kronoberg/handalser-rss---kronoberg/"
+        ]),
+
+        PoliceFeed(title: "Kalmar", urls: [
+            "https://polisen.se/aktuellt/rss/kalmar-lan/nyheter-rss---kalmar-lan/",
+            "https://polisen.se/aktuellt/rss/kalmar-lan/handalser-rss---kalmar-lan/"
+        ]),
+
+    ],
+    "Region Bergslagen": [
+        PoliceFeed(title: "Värmland", urls: [
+            "https://polisen.se/aktuellt/rss/varmland/nyheter-rss---varmland/",
+            "https://polisen.se/aktuellt/rss/varmland/handalser-rss---varmland/"
+        ]),
+
+        PoliceFeed(title: "Örebro", urls: [
+            "https://polisen.se/aktuellt/rss/orebro-lan/nyheter-rss---orebro-lan/",
+            "https://polisen.se/aktuellt/rss/orebro-lan/handalser-rss---orebro-lan/"
+        ]),
+
+        PoliceFeed(title: "Dalarna", urls: [
+            "https://polisen.se/aktuellt/rss/dalarna/nyheter-rss---dalarna/",
+            "https://polisen.se/aktuellt/rss/dalarna/handalser-rss---dalarna/"
+        ]),
+    ],
+]
+*/
