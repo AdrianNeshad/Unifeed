@@ -59,7 +59,7 @@ class NewsViewModel: ObservableObject {
         UserDefaults.standard.setValue(joined, forKey: categoryKey)
     }
 
-    func loadNews(completion: (() -> Void)? = nil) {
+    func loadNews() {
         newsItems = []
         let group = DispatchGroup()
         var allItems: [NewsItem] = []
@@ -99,7 +99,6 @@ class NewsViewModel: ObservableObject {
             if !errors.isEmpty {
                 print("Fel vid hämtning: \(errors)")
             }
-            completion?()
         }
     }
 

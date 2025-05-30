@@ -32,6 +32,7 @@ struct Filter: View {
 
                         Text(source.name)
                             .padding(.leading, 4)
+                            .foregroundColor(.primary)
 
                         Spacer()
 

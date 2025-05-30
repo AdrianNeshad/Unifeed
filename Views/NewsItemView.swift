@@ -63,7 +63,7 @@ struct NewsItemView: View {
 
 
             Text(newsItem.title)
-                .font(.title3)  
+                .font(.title3)
                 .bold()
                 .padding(.horizontal)
 
@@ -75,7 +75,7 @@ struct NewsItemView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(isDarkMode ? Color.gray.opacity(0.15) : Color.white)
+                .fill(isDarkMode ? Color.gray.opacity(0.15) : Color(white: 0.95))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(isDarkMode ? Color.gray.opacity(0.5) : Color.black, lineWidth: 1)
