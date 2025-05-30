@@ -10,10 +10,10 @@ import Foundation
 
 enum Category: String, CaseIterable, Identifiable {
     case noje = "Nyheter"
-    case sport = "Sport"
     case polisen = "Polisen"
-    case finans = "Finans"
     case myndighet = "Myndigheter"
+    case sport = "Sport"
+    case finans = "Ekonomi"
     case fotboll = "Fotboll"
     
     var iconName: String {
@@ -117,7 +117,8 @@ enum Category: String, CaseIterable, Identifiable {
             ]
         case .finans:
             return [
-                NewsSource(name: "Expressen Ekonomi", logo: "exp_logo")
+                NewsSource(name: "Expressen Ekonomi", logo: "exp_logo"),
+                NewsSource(name: "MarketWatch", logo: "mw_logo"),
             ]
         case .sport:
             return [
@@ -138,7 +139,7 @@ enum Category: String, CaseIterable, Identifiable {
         case .myndighet:
             return language == "sv" ? "Myndigheter" : "Authorities"
         case .finans:
-            return language == "sv" ? "Finans" : "Finance"
+            return language == "sv" ? "Ekonomi" : "Economics"
         case .polisen:
             return language == "sv" ? "Polisen" : "Police"
         case .sport:

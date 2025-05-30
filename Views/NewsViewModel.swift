@@ -157,6 +157,8 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://www.riksbank.se/sv/rss/nyheter/")
         case "Dagens Nyheter":
             return URL(string: "https://www.dn.se/rss/")
+        case "MarketWatch":
+            return URL(string: "https://feeds.content.dowjones.io/public/rss/mw_topstories")
             
             
             //Region Nord
