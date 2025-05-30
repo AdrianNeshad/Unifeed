@@ -33,7 +33,7 @@ struct NewsItemView: View {
                             .foregroundColor(.secondary)
                         Spacer()
                     }
-                    .padding(.top, -5) // Justera denna siffra för mer/färre pixlar uppåt
+                    .padding(.top, -5)
                 }
             }
             .padding([.top, .horizontal])
@@ -56,8 +56,6 @@ struct NewsItemView: View {
                         .padding(.horizontal)
                 }
             }
-
-
             Text(newsItem.title)
                 .font(.title3)
                 .bold()

@@ -22,9 +22,18 @@ struct Unifeed_Index: View {
             ScrollView {
                 LazyVStack {
                     if viewModel.isLoading {
-                        ProgressView(appLanguage == "sv" ? "Laddar nyheter..." : "Loading news...")
-                            .padding()
-                    } else {
+                        VStack(spacing: 8) {
+                            ProgressView()
+                                .padding(.top, 20)
+                                .scaleEffect(1.75)
+                            Text(appLanguage == "sv" ? "Laddar flöde..." : "Loading Feed...")
+                                .font(.body)
+                                .padding(.top, 20)
+                                .foregroundColor(.gray)
+                        }
+                        .padding()
+                    }
+                    else {
                         ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
                             NewsItemView(newsItem: item)
                                 .padding(.horizontal)

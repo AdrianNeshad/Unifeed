@@ -16,13 +16,11 @@ struct Location: View {
 
     var body: some View {
         List {
-            // Sektion för nationella flöden
             Section(header: Text(appLanguage == "sv" ? "Nationella flöden" : "National Feeds")) {
                 ForEach(nationellaKällor) { source in
                     sourceRow(source)
                 }
             }
-
             Section(header: Text(appLanguage == "sv" ? "Lokala områden" : "Local Areas")) {
                 ForEach(regionKarta.keys.sorted(), id: \.self) { region in
                     DisclosureGroup(
@@ -48,7 +46,6 @@ struct Location: View {
                     )
                 }
             }
-
         }
         .navigationTitle(appLanguage == "sv" ? "Välj lokalområde" : "Choose Local Area")
         .toolbar {
@@ -98,7 +95,6 @@ struct Location: View {
     private var regionKarta: [String: [NewsSource]] {
         let alla = viewModel.currentCategory.sources.dropFirst(2)
 
-        // Exempel på regionsindelning – måste matcha namn
         let regioner = [
             "Region Nord": ["Jämtland", "Västerbotten", "Norrbotten", "Västernorrland"],
             "Region Mitt": ["Gävleborg", "Uppsala", "Västmanland"],
@@ -110,7 +106,7 @@ struct Location: View {
         ]
 
         var result: [String: [NewsSource]] = [:]
-
+        
         for (region, län) in regioner {
             let sources = alla.filter { source in
                 län.contains { source.name.hasPrefix($0) }
@@ -119,7 +115,6 @@ struct Location: View {
                 result[region] = sources
             }
         }
-
         return result
     }
 }

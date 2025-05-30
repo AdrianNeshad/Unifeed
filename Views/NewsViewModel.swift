@@ -26,7 +26,6 @@ class NewsViewModel: ObservableObject {
         }
     }
 
-    // Unik nyckel per kategori
     private var categoryKey: String {
         "activeSources_\(currentCategory.rawValue)"
     }
@@ -111,7 +110,6 @@ class NewsViewModel: ObservableObject {
             }
         }
     }
-
 
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {

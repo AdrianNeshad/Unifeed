@@ -33,7 +33,6 @@ struct Settings: View {
 
     var body: some View {
         Form {
-            // Utseende
             Section(header: Text(appLanguage == "sv" ? "Utseende" : "Appearance")) {
                 Toggle(appLanguage == "sv" ? "Mörkt läge" : "Dark mode", isOn: $isDarkMode)
                     .toggleStyle(SwitchToggleStyle(tint: .blue))
@@ -44,8 +43,6 @@ struct Settings: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-
-            // Filteråterställning
             Section(header: Text(appLanguage == "sv" ? "Filter" : "Filter")) {
                 Button(action: {
                     resetAllFilters()
@@ -57,7 +54,6 @@ struct Settings: View {
                     }
                 }
             }
-
             /*
             // Köp-sektion (om du vill återaktivera)
             Section(header: Text(appLanguage == "sv" ? "Reklamfritt" : "Ad-free")) {
@@ -120,13 +116,10 @@ struct Settings: View {
                 }
             }
             */
-
-            // Feedback
             Section(header: Text(appLanguage == "sv" ? "Feedback" : "Feedback")) {
                 Button(appLanguage == "sv" ? "Betygsätt appen" : "Rate the App") {
                     requestReview()
                 }
-
                 Button(appLanguage == "sv" ? "Ge feedback" : "Give Feedback") {
                     if MFMailComposeViewController.canSendMail() {
                         showMailFeedback = true
@@ -141,8 +134,6 @@ struct Settings: View {
                                  messageBody: "")
                 }
             }
-
-            // Appversion längst ner
             Section {
                 EmptyView()
             } footer: {
@@ -180,7 +171,6 @@ struct Settings: View {
                 UserDefaults.standard.setValue(joined, forKey: key)
             }
         }
-
         viewModel.loadActiveSources()
         viewModel.loadNews()
     }
