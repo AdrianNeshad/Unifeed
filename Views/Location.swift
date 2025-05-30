@@ -92,11 +92,11 @@ struct Location: View {
     }
 
     private var nationellaKällor: [NewsSource] {
-        viewModel.currentCategory.sources.prefix(3).map { $0 }
+        viewModel.currentCategory.sources.prefix(2).map { $0 }
     }
 
     private var regionKarta: [String: [NewsSource]] {
-        let alla = viewModel.currentCategory.sources.dropFirst(3)
+        let alla = viewModel.currentCategory.sources.dropFirst(2)
 
         // Exempel på regionsindelning – måste matcha namn
         let regioner = [

@@ -111,8 +111,6 @@ class NewsViewModel: ObservableObject {
 
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
-        case "Press":
-            return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/press-rss---nationella/")
         case "Pressmeddelanden":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/pressmeddelanden-hela-landet/")
         case "Nyheter":
@@ -124,7 +122,7 @@ class NewsViewModel: ObservableObject {
         case "Aftonbladet":
             return URL(string: "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/")
         case "Dagens Industri":
-            return URL(string: "https://www.dn.se/rss/")
+            return URL(string: "https://www.di.se/digital/rss")
         case "Fotbollskanalen":
             return URL(string: "https://www.fotbollskanalen.se/rss/")
         case "FotbollsExpressen":
@@ -133,6 +131,8 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://feeds.expressen.se/nyheter/")
         case "SportExpressen":
             return URL(string: "https://feeds.expressen.se/sport/")
+        case "Expressen Ekonomi":
+            return URL(string: "https://feeds.expressen.se/ekonomi/")
         case "Svenska Dagbladet":
             return URL(string: "https://www.svd.se/feed/articles.rss")
         case "SVT":
@@ -151,24 +151,29 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://www.livsmedelsverket.se/rss/rss-pressmeddelanden")
         case "Läkemedelsverket":
             return URL(string: "https://www.lakemedelsverket.se/api/newslist/newsrss?query=&pageTypeId=1&from=&to=")
+        case "Riksbanken":
+            return URL(string: "https://www.riksbank.se/sv/rss/nyheter/")
+        case "Dagens Nyheter":
+            return URL(string: "https://www.dn.se/rss/")
+            
             
             //Region Nord
         case "Jämtland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/jamtland/nyheter-rss---jamtland/")
         case "Jämtland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/jamtland/handalser-rss---jamtland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/jamtland/handelser-rss---jamtland/")
         case "Västerbotten - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/vasterbotten/nyheter-rss---vasterbotten/")
         case "Västerbotten - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/vasterbotten/handalser-rss---vasterbotten/")
+            return URL(string: "https://polisen.se/aktuellt/rss/vasterbotten/handelser-rss---vasterbotten/")
         case "Norrbotten - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/norrbotten/nyheter-rss---norrbotten/")
         case "Norrbotten - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/norrbotten/handalser-rss---norrbotten/")
+            return URL(string: "https://polisen.se/aktuellt/rss/norrbotten/handelser-rss---norrbotten/")
         case "Västernorrland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/vasternorrland/nyheter-rss---vasternorrland/")
         case "Västernorrland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/vasternorrland/handalser-rss---vasternorrland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/vasternorrland/handelser-rss---vasternorrland/")
             
         // Region Mitt
         case "Gävleborg - Nyheter":
@@ -182,73 +187,73 @@ class NewsViewModel: ObservableObject {
         case "Västmanland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/vastmanland/nyheter-rss---vastmanland/")
         case "Västmanland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/vastmanland/handalser-rss---vastmanland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/vastmanland/handelser-rss---vastmanland/")
             
         // Region Stockholm
         case "Stockholm - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/stockholms-lan/nyheter-rss---stockholms-lan/")
         case "Stockholm - Händelser":
-            return URL(string:"https://polisen.se/aktuellt/rss/stockholms-lan/handalser-rss---stockholms-lan/")
+            return URL(string: "https://polisen.se/aktuellt/rss/stockholms-lan/handelser-rss---stockholms-lan/")
         case "Gotland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/gotland/nyheter-rss---gotland/")
         case "Gotland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/gotland/handalser-rss---gotland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/gotland/handelser-rss---gotland/")
 
             // Region Öst
         case "Södermanland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/sodermanland/nyheter-rss---sodermanland/")
         case "Södermanland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/sodermanland/handalser-rss---sodermanland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/sodermanland/handelser-rss---sodermanland/")
         case "Östergötland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/ostergotland/nyheter-rss---ostergotland/")
         case "Östergötland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/ostergotland/handalser-rss---ostergotland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/ostergotland/handelser-rss---ostergotland/")
         case "Jönköping - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/jonkopings-lan/nyheter-rss---jonkopings-lan/")
         case "Jönköping - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/jonkopings-lan/handalser-rss---jonkopings-lan/")
+            return URL(string: "https://polisen.se/aktuellt/rss/jonkopings-lan/handelser-rss---jonkopings-lan/")
 
             // Region Väst
         case "Halland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/halland/nyheter-rss---halland/")
         case "Halland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/halland/handalser-rss---halland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/halland/handelser-rss---halland/")
         case "Västra Götaland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/vastra-gotaland/nyheter-rss---vastra-gotaland/")
         case "Västra Götaland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/vastra-gotaland/handalser-rss---vastra-gotaland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/vastra-gotaland/handelser-rss---vastra-gotaland/")
 
             // Region Syd
         case "Skåne - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/skane/nyheter-rss---skane/")
         case "Skåne - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/skane/handalser-rss---skane/")
+            return URL(string: "https://polisen.se/aktuellt/rss/skane/handelser-rss---skane/")
         case "Blekinge - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/blekinge/nyheter-rss---blekinge/")
         case "Blekinge - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/blekinge/handalser-rss---blekinge/")
+            return URL(string: "https://polisen.se/aktuellt/rss/blekinge/handelser-rss---blekinge/")
         case "Kronoberg - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/kronoberg/nyheter-rss---kronoberg/")
         case "Kronoberg - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/kronoberg/handalser-rss---kronoberg/")
+            return URL(string: "https://polisen.se/aktuellt/rss/kronoberg/handelser-rss---kronoberg/")
         case "Kalmar - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/kalmar-lan/nyheter-rss---kalmar-lan/")
         case "Kalmar - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/kalmar-lan/handalser-rss---kalmar-lan/")
+            return URL(string: "https://polisen.se/aktuellt/rss/kalmar-lan/handelser-rss---kalmar-lan/")
 
             // Region Bergslagen
         case "Värmland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/varmland/nyheter-rss---varmland/")
         case "Värmland - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/varmland/handalser-rss---varmland/")
+            return URL(string: "https://polisen.se/aktuellt/rss/varmland/handelser-rss---varmland/")
         case "Örebro - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/orebro-lan/nyheter-rss---orebro-lan/")
         case "Örebro - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/orebro-lan/handalser-rss---orebro-lan/")
+            return URL(string: "https://polisen.se/aktuellt/rss/orebro-lan/handelser-rss---orebro-lan/")
         case "Dalarna - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/dalarna/nyheter-rss---dalarna/")
         case "Dalarna - Händelser":
-            return URL(string: "https://polisen.se/aktuellt/rss/dalarna/handalser-rss---dalarna/")
+            return URL(string: "https://polisen.se/aktuellt/rss/dalarna/handelser-rss---dalarna/")
 
         default:
             return nil

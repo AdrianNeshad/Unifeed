@@ -35,7 +35,6 @@ enum Category: String, CaseIterable, Identifiable {
             return [
                 // Nationella
                 NewsSource(name: "Nyheter", logo: "polis_logo"),
-                NewsSource(name: "Händelser", logo: "polis_logo"),
                 NewsSource(name: "Pressmeddelanden", logo: "polis_logo"),
 
                 // Region Nord
@@ -102,6 +101,8 @@ enum Category: String, CaseIterable, Identifiable {
                 NewsSource(name: "Svenska Dagbladet", logo: "svd_logo"),
                 NewsSource(name: "SVT", logo: "svt_logo"),
                 NewsSource(name: "TV4", logo: "tv4_logo"),
+                NewsSource(name: "Dagens Industri", logo: "di_logo"),
+                NewsSource(name: "Dagens Nyheter", logo: "dn_logo"),
             ]
         case .myndighet:
             return [
@@ -112,10 +113,11 @@ enum Category: String, CaseIterable, Identifiable {
                 NewsSource(name: "Skatteverket", logo: "skatteverket_logo"),
                 NewsSource(name: "Livsmedelsverket", logo: "livsmedelsverket_logo"),
                 NewsSource(name: "Läkemedelsverket", logo: "läkemedelsverket_logo"),
+                NewsSource(name: "Riksbanken", logo: "riksbanken_logo")
             ]
         case .finans:
             return [
-                NewsSource(name: "Dagens Industri", logo: "di_logo")
+                NewsSource(name: "Expressen Ekonomi", logo: "exp_logo")
             ]
         case .sport:
             return [

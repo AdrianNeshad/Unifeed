@@ -169,9 +169,16 @@ struct Settings: View {
     private func resetAllFilters() {
         for category in Category.allCases {
             let key = "activeSources_\(category.rawValue)"
-            let allNames = category.sources.map { $0.name }
-            let joined = allNames.joined(separator: "|")
-            UserDefaults.standard.setValue(joined, forKey: key)
+            
+            if category == .polisen {
+                let nationalSources = category.sources.prefix(2).map { $0.name }
+                let joined = nationalSources.joined(separator: "|")
+                UserDefaults.standard.setValue(joined, forKey: key)
+            } else {
+                let allNames = category.sources.map { $0.name }
+                let joined = allNames.joined(separator: "|")
+                UserDefaults.standard.setValue(joined, forKey: key)
+            }
         }
 
         viewModel.loadActiveSources()
