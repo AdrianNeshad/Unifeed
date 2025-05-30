@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 class NewsViewModel: ObservableObject {
+    @Published var isLoading: Bool = false
     @Published var newsItems: [NewsItem] = []
 
     @Published var currentCategory: Category = .noje {
@@ -67,6 +68,7 @@ class NewsViewModel: ObservableObject {
     }
 
     func loadNews() {
+        isLoading = true
         newsItems = []
         let group = DispatchGroup()
         var allItems: [NewsItem] = []
@@ -102,12 +104,14 @@ class NewsViewModel: ObservableObject {
                 }
             }
             self.newsItems = uniqueItems.sorted(by: { ($0.pubDate ?? Date.distantPast) > ($1.pubDate ?? Date.distantPast) })
+            self.isLoading = false
 
             if !errors.isEmpty {
                 print("Fel vid hämtning: \(errors)")
             }
         }
     }
+
 
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {

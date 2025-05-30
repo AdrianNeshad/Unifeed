@@ -21,14 +21,19 @@ struct Unifeed_Index: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
-                        NewsItemView(newsItem: item)
-                            .padding(.horizontal)
-                            .onTapGesture {
-                                if let link = item.link {
-                                    selectedLink = IdentifiableURL(url: link)
+                    if viewModel.isLoading {
+                        ProgressView(appLanguage == "sv" ? "Laddar nyheter..." : "Loading news...")
+                            .padding()
+                    } else {
+                        ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
+                            NewsItemView(newsItem: item)
+                                .padding(.horizontal)
+                                .onTapGesture {
+                                    if let link = item.link {
+                                        selectedLink = IdentifiableURL(url: link)
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
             }
