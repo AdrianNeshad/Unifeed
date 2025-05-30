@@ -33,7 +33,9 @@ enum Category: String, CaseIterable, Identifiable {
         switch self {
         case .polisen:
             return [
-                NewsSource(name: "Polisen", logo: "polis_logo")
+                NewsSource(name: "Nyheter", logo: "polis_logo"),
+                NewsSource(name: "Pressmedelanden", logo: "polis_logo"),
+                NewsSource(name: "Press", logo: "polis_logo"),
             ]
         case .noje:
             return [

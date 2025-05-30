@@ -15,78 +15,64 @@
 import SwiftUI
 
 struct Location: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel: NewsViewModel
-    @State private var expandedRegions: Set<String> = []
+    @AppStorage("appLanguage") private var appLanguage = "sv"
 
     var body: some View {
         List {
-            Section(header: Text("Nationella flöden")) {
-                ForEach(nationalFeeds) { feed in
-                    let isChecked = feed.urls.allSatisfy { viewModel.selectedPoliceFeedURLs.contains($0) }
-
+            Section(header: Text(appLanguage == "sv" ? "Nationella flöden" : "National Feeds")) {
+                ForEach(viewModel.currentCategory.sources) { source in
                     Button {
-                        toggleFeed(urls: feed.urls, isChecked: isChecked)
+                        toggle(source)
                     } label: {
                         HStack {
-                            Text(feed.title)
+                            if let logo = source.logo {
+                                Image(logo)
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(systemName: "photo")
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            Text(source.name)
+                                .padding(.leading, 4)
+                                .foregroundColor(.primary)
+                            
                             Spacer()
-                            Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(isChecked ? .accentColor : .gray)
+                            
+                            Image(systemName: viewModel.activeSources.contains(source.name) ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(.accentColor)
                         }
+                        
                     }
                 }
             }
-
-            ForEach(localFeeds.keys.sorted(), id: \.self) { region in
-                DisclosureGroup(
-                    isExpanded: Binding(
-                        get: { expandedRegions.contains(region) },
-                        set: { expanded in
-                            if expanded {
-                                expandedRegions.insert(region)
-                            } else {
-                                expandedRegions.remove(region)
-                            }
-                        }
-                    ),
-                    content: {
-                        ForEach(localFeeds[region] ?? []) { feed in
-                            let isChecked = feed.urls.allSatisfy { viewModel.selectedPoliceFeedURLs.contains($0) }
-
-                            Button {
-                                toggleFeed(urls: feed.urls, isChecked: isChecked)
-                            } label: {
-                                HStack {
-                                    Text(feed.title)
-                                    Spacer()
-                                    Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                                        .foregroundColor(isChecked ? .accentColor : .gray)
-                                }
-                            }
-                        }
-                    },
-                    label: {
-                        Text(region)
-                            .font(.headline)
-                    }
-                )
-            }
         }
-        .navigationTitle("Välj flöden")
-        .onDisappear {
-            viewModel.loadNews()
+        .navigationTitle(appLanguage == "sv" ? "Välj lokalområde" : "Choose Local Area")
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button(appLanguage == "sv" ? "Klar" : "Done") {
+                    viewModel.loadNews()
+                    dismiss()
+                }
+            }
         }
     }
 
-    private func toggleFeed(urls: [String], isChecked: Bool) {
-        if isChecked {
-            viewModel.selectedPoliceFeedURLs.subtract(urls)
+    private func toggle(_ source: NewsSource) {
+        if viewModel.activeSources.contains(source.name) {
+            viewModel.activeSources.remove(source.name)
         } else {
-            viewModel.selectedPoliceFeedURLs.formUnion(urls)
+            viewModel.activeSources.insert(source.name)
         }
     }
 }
 
+/*
 let nationalFeeds = [
     PoliceFeed(title: "Press – Nationella", urls: ["https://polisen.se/aktuellt/rss/hela-landet/press-rss---nationella/"]),
     PoliceFeed(title: "Pressmeddelanden – Hela landet", urls: ["https://polisen.se/aktuellt/rss/hela-landet/pressmeddelanden-hela-landet/"]),
@@ -208,3 +194,4 @@ let localFeeds: [String: [PoliceFeed]] = [
         ]),
     ],
 ]
+*/
