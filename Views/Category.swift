@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 enum Category: String, CaseIterable, Identifiable {
-    case noje = "Nöjesnyheter"
+    case noje = "Nyheter"
     case sport = "Sport"
     case polisen = "Polisen"
     case finans = "Finans"
@@ -72,7 +72,7 @@ enum Category: String, CaseIterable, Identifiable {
     func localizedName(language: String) -> String {
         switch self {
         case .noje:
-            return language == "sv" ? "Nöjesnyheter" : "News"
+            return language == "sv" ? "Nyheter" : "News"
         case .myndighet:
             return language == "sv" ? "Myndigheter" : "Authorities"
         case .finans:

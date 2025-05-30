@@ -16,12 +16,12 @@ class RSSFetcher: NSObject, XMLParserDelegate {
     private var currentImageURLString: String?
     private var currentLinkString = ""
     private var completionHandler: ((Result<[NewsItem], Error>) -> Void)?
-    private var currentSource: NewsSource? // ✅ Nytt
+    private var currentSource: NewsSource?
 
     func fetchFeed(from url: URL, source: NewsSource, completion: @escaping (Result<[NewsItem], Error>) -> Void) {
-        self.currentSource = source // ✅ Spara källan
+        self.currentSource = source
         self.completionHandler = completion
-        self.items = [] // 🔁 Viktigt vid upprepade anrop
+        self.items = []
 
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
@@ -52,7 +52,7 @@ class RSSFetcher: NSObject, XMLParserDelegate {
             currentImageURLString = nil
             currentLinkString = ""
         }
-        if elementName == "enclosure", let url = attributeDict["url"] {
+        if (elementName == "enclosure" || elementName == "media:content"), let url = attributeDict["url"] {
             currentImageURLString = url
         }
     }
@@ -75,6 +75,13 @@ class RSSFetcher: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String,
                 namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
+            // Om ingen enclosure-bild hittades, försök extrahera från HTML
+            if currentImageURLString == nil {
+                if let imgURL = extractFirstImageURL(from: currentDescription) {
+                    currentImageURLString = imgURL
+                }
+            }
+
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
             let pubDate = dateFormatter.date(from: currentPubDateString.trimmingCharacters(in: .whitespacesAndNewlines))
@@ -86,7 +93,7 @@ class RSSFetcher: NSObject, XMLParserDelegate {
                 title: currentTitle.trimmingCharacters(in: .whitespacesAndNewlines).decodedHTML,
                 description: currentDescription.trimmingCharacters(in: .whitespacesAndNewlines).decodedHTML,
                 imageURL: imageURL,
-                source: currentSource!, // ✅ Här sätts rätt källa
+                source: currentSource!,
                 pubDate: pubDate,
                 link: linkURL
             )
@@ -101,4 +108,38 @@ class RSSFetcher: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         completionHandler?(.failure(parseError))
     }
+
+    private func extractFirstImageURL(from htmlString: String) -> String? {
+        guard let imgTagRange = htmlString.range(of: "<img[^>]*src=[\"']([^\"']+)[\"'][^>]*>", options: .regularExpression) else {
+            return nil
+        }
+
+        let imgTag = htmlString[imgTagRange]
+
+        let pattern = "src=[\"']([^\"']+)[\"']"
+        if let regex = try? NSRegularExpression(pattern: pattern),
+           let match = regex.firstMatch(in: String(imgTag), range: NSRange(imgTag.startIndex..., in: imgTag)),
+           let range = Range(match.range(at: 1), in: imgTag) {
+            
+            var urlString = String(imgTag[range])
+            if urlString.hasPrefix("//") {
+                urlString = "https:" + urlString
+            } else if urlString.hasPrefix("/") {
+                if let sourceName = currentSource?.name {
+                    switch sourceName {
+                    case "Svenska Dagbladet":
+                        urlString = "https://www.svd.se" + urlString
+                    case "SVT":
+                        urlString = "https://www.svt.se" + urlString
+                    default:
+                        break
+                    }
+                }
+            }
+            return urlString
+        }
+
+        return nil
+    }
+
 }

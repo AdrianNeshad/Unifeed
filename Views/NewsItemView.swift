@@ -48,14 +48,14 @@ struct NewsItemView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+                        .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 150)
                         .clipped()
                         .cornerRadius(10)
                         .padding(.horizontal)
                 } placeholder: {
                     Rectangle()
                         .foregroundColor(.gray.opacity(0.3))
-                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+                        .frame(maxWidth: .infinity, minHeight: 150, maxHeight: 150)
                         .cornerRadius(10)
                         .padding(.horizontal)
                 }
@@ -63,12 +63,13 @@ struct NewsItemView: View {
 
 
             Text(newsItem.title)
-                .font(.title3)
+                .font(.title3)  
                 .bold()
                 .padding(.horizontal)
 
             Text(newsItem.description)
                 .font(.body)
+                .lineLimit(15)
                 .padding([.horizontal, .bottom])
         }
         .frame(maxWidth: .infinity, alignment: .leading)

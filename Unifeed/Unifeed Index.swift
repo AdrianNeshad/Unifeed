@@ -16,27 +16,44 @@ struct Unifeed_Index: View {
     @State private var showingSheet = false
     @State private var selectedLink: IdentifiableURL? = nil
     @State private var showingCategoryPicker = false
-    
+    @State private var isLoading = true
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack {
-                    ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
-                        NewsItemView(newsItem: item)
-                            .padding(.horizontal)
-                            .onTapGesture {
-                                if let link = item.link {
-                                    selectedLink = IdentifiableURL(url: link)
-                                }
+            Group {
+                if isLoading {
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
+                            .scaleEffect(1.5)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
+                                NewsItemView(newsItem: item)
+                                    .padding(.horizontal)
+                                    .onTapGesture {
+                                        if let link = item.link {
+                                            selectedLink = IdentifiableURL(url: link)
+                                        }
+                                    }
                             }
+                        }
+                    }
+                    .refreshable {
+                        isLoading = true
+                        viewModel.loadNews {
+                            isLoading = false
+                        }
                     }
                 }
             }
             .sheet(item: $selectedLink) { wrapped in
                 SafariView(url: wrapped.url)
-            }
-            .refreshable {
-                viewModel.loadNews()
             }
             .navigationTitle(viewModel.currentCategory.localizedName(language: appLanguage))
             .toolbar {
@@ -54,20 +71,27 @@ struct Unifeed_Index: View {
                         }
                     }
                 }
+                if viewModel.currentCategory != .polisen {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: Filter().environmentObject(viewModel)) {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                        }
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Settings()) {
+                    NavigationLink(destination: Settings().environmentObject(viewModel)) {
                         Image(systemName: "gearshape")
                     }
                 }
             }
-
             .preferredColorScheme(isDarkMode ? .dark : .light)
             .sheet(isPresented: $showingCategoryPicker) {
                 NavigationView {
                     List(Category.allCases) { category in
                         Button {
+                            isLoading = true
                             viewModel.currentCategory = category
-                            showingCategoryPicker = false
+                            // laddningen triggas automatiskt via didSet
                         } label: {
                             HStack {
                                 Image(systemName: category.iconName)
@@ -82,7 +106,12 @@ struct Unifeed_Index: View {
                     .navigationTitle(appLanguage == "sv" ? "Välj kategori" : "Choose Category")
                 }
             }
-
+        }
+        .onAppear {
+            isLoading = true
+            viewModel.loadNews {
+                isLoading = false
+            }
         }
     }
 }
@@ -91,7 +120,6 @@ struct IdentifiableURL: Identifiable {
     let id = UUID()
     let url: URL
 }
-
 
 #Preview {
     Unifeed_Index()

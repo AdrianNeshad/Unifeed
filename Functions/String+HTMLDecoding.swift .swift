@@ -17,7 +17,8 @@ extension String {
         ]
         if let attributed = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
             return attributed.string
+        } else {
+            return self
         }
-        return self
     }
 }

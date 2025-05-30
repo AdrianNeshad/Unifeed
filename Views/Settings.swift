@@ -14,34 +14,52 @@ struct Settings: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("appLanguage") private var appLanguage = "sv"
     @AppStorage("adsRemoved") private var adsRemoved = false
+
+    @EnvironmentObject var viewModel: NewsViewModel
+
     @StateObject private var storeManager = StoreManager()
     @State private var showRestoreAlert = false
     @State private var showPurchaseSheet = false
     @State private var restoreStatus: RestoreStatus?
-    @Environment(\.requestReview) var requestReview
     @State private var showMailFeedback = false
     @State private var mailErrorAlert = false
     @State private var showClearAlert = false
     @State private var showToast = false
     @State private var toastMessage = ""
-    
+
     enum RestoreStatus {
         case success, failure
     }
-    
+
     var body: some View {
         Form {
+            // Utseende
             Section(header: Text(appLanguage == "sv" ? "Utseende" : "Appearance")) {
                 Toggle(appLanguage == "sv" ? "Mörkt läge" : "Dark mode", isOn: $isDarkMode)
                     .toggleStyle(SwitchToggleStyle(tint: .blue))
-                
+
                 Picker("Språk / Language", selection: $appLanguage) {
                     Text("Svenska").tag("sv")
                     Text("English").tag("en")
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-            // Köp-sektion
+
+            // Filteråterställning
+            Section(header: Text(appLanguage == "sv" ? "Filter" : "Filter")) {
+                Button(action: {
+                    resetAllFilters()
+                    toastMessage = appLanguage == "sv" ? "Alla filter återställda" : "All filters reset"
+                    showToast = true
+                }) {
+                    HStack {
+                        Text(appLanguage == "sv" ? "Återställ filter" : "Reset Filters")
+                    }
+                }
+            }
+
+            /*
+            // Köp-sektion (om du vill återaktivera)
             Section(header: Text(appLanguage == "sv" ? "Reklamfritt" : "Ad-free")) {
                 if !adsRemoved {
                     Button(action: {
@@ -68,7 +86,7 @@ struct Settings: View {
                             .foregroundColor(.green)
                     }
                 }
-                
+
                 Button(appLanguage == "sv" ? "Återställ köp" : "Restore Purchases") {
                     storeManager.restorePurchases()
                     showRestoreAlert = true
@@ -101,12 +119,14 @@ struct Settings: View {
                     }
                 }
             }
-            
+            */
+
+            // Feedback
             Section(header: Text(appLanguage == "sv" ? "Feedback" : "Feedback")) {
                 Button(appLanguage == "sv" ? "Betygsätt appen" : "Rate the App") {
                     requestReview()
                 }
-                
+
                 Button(appLanguage == "sv" ? "Ge feedback" : "Give Feedback") {
                     if MFMailComposeViewController.canSendMail() {
                         showMailFeedback = true
@@ -116,11 +136,13 @@ struct Settings: View {
                 }
                 .sheet(isPresented: $showMailFeedback) {
                     MailFeedback(isShowing: $showMailFeedback,
-                        recipientEmail: "Adrian.neshad1@gmail.com",
-                        subject: appLanguage == "sv" ? "Unifeed feedback" : "Unifeed Feedback",
-                        messageBody: "")
+                                 recipientEmail: "Adrian.neshad1@gmail.com",
+                                 subject: appLanguage == "sv" ? "Unifeed feedback" : "Unifeed Feedback",
+                                 messageBody: "")
                 }
             }
+
+            // Appversion längst ner
             Section {
                 EmptyView()
             } footer: {
@@ -140,5 +162,19 @@ struct Settings: View {
         .toast(isPresenting: $showToast) {
             AlertToast(type: .complete(Color.green), title: toastMessage)
         }
+    }
+
+    @Environment(\.requestReview) var requestReview
+
+    private func resetAllFilters() {
+        for category in Category.allCases {
+            let key = "activeSources_\(category.rawValue)"
+            let allNames = category.sources.map { $0.name }
+            let joined = allNames.joined(separator: "|")
+            UserDefaults.standard.setValue(joined, forKey: key)
+        }
+
+        viewModel.loadActiveSources()
+        viewModel.loadNews()
     }
 }

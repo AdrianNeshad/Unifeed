@@ -7,27 +7,65 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class NewsViewModel: ObservableObject {
     @Published var newsItems: [NewsItem] = []
 
-    @Published var currentCategory: Category = .myndighet {
+    @Published var currentCategory: Category = .noje {
         didSet {
+            loadActiveSources()
             loadNews()
         }
     }
 
+    @Published var activeSources: Set<String> = [] {
+        didSet {
+            saveActiveSources()
+        }
+    }
+
+    // Unik nyckel per kategori
+    private var categoryKey: String {
+        "activeSources_\(currentCategory.rawValue)"
+    }
+
+    var filteredSources: [NewsSource] {
+        currentCategory.sources.filter { activeSources.isEmpty || activeSources.contains($0.name) }
+    }
+
     init() {
+        loadActiveSources()
         loadNews()
     }
 
-    func loadNews() {
+    func loadActiveSources() {
+        let saved = UserDefaults.standard.string(forKey: categoryKey)?
+            .split(separator: "|")
+            .map(String.init) ?? []
+
+        let allNames = currentCategory.sources.map { $0.name }
+        let validSaved = saved.filter { allNames.contains($0) }
+
+        if validSaved.isEmpty {
+            activeSources = Set(allNames)
+        } else {
+            activeSources = Set(validSaved)
+        }
+    }
+
+    func saveActiveSources() {
+        let joined = activeSources.joined(separator: "|")
+        UserDefaults.standard.setValue(joined, forKey: categoryKey)
+    }
+
+    func loadNews(completion: (() -> Void)? = nil) {
         newsItems = []
         let group = DispatchGroup()
         var allItems: [NewsItem] = []
         var errors: [Error] = []
 
-        let sources = currentCategory.sources
+        let sources = filteredSources
 
         for source in sources {
             guard let feedURL = feedURL(for: source.name) else { continue }
@@ -61,9 +99,10 @@ class NewsViewModel: ObservableObject {
             if !errors.isEmpty {
                 print("Fel vid hämtning: \(errors)")
             }
+            completion?()
         }
     }
-    
+
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
         case "Polisen":
@@ -83,11 +122,11 @@ class NewsViewModel: ObservableObject {
         case "SportExpressen":
             return URL(string: "https://feeds.expressen.se/sport/")
         case "Svenska Dagbladet":
-            return URL(string: "svd.se/feed/articles.rss")
-        case "TV4":
-            return URL(string: "tv4.se/rss")
+            return URL(string: "https://www.svd.se/feed/articles.rss")
         case "SVT":
-            return URL(string: "svt.se/rss.xml")
+            return URL(string: "https://www.svt.se/nyheter/rss.xml")
+        case "TV4":
+            return nil // Ingen tillförlitlig RSS för tillfället
         case "Krisinformation":
             return URL(string: "https://www.krisinformation.se/nyheter?rss=true")
         case "MSB":
