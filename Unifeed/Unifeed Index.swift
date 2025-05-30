@@ -49,7 +49,7 @@ struct Unifeed_Index: View {
                 }
                 if viewModel.currentCategory == .polisen {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: Location()) {
+                        NavigationLink(destination: Location().environmentObject(viewModel)) {
                             Image(systemName: "map")
                         }
                     }

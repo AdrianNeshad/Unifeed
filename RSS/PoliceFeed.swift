@@ -10,5 +10,5 @@ import Foundation
 struct PoliceFeed: Identifiable {
     let id = UUID()
     let title: String
-    let url: String
+    let urls: [String]
 }

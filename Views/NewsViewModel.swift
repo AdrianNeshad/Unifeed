@@ -125,7 +125,7 @@ class NewsViewModel: ObservableObject {
         case "SVT":
             return URL(string: "https://www.svt.se/nyheter/rss.xml")
         case "TV4":
-            return nil // Ingen tillförlitlig RSS för tillfället
+            return URL(string: "https://www.tv4.se/rss")
         case "Krisinformation":
             return URL(string: "https://www.krisinformation.se/nyheter?rss=true")
         case "MSB":
