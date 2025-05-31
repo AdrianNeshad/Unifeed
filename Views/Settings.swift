@@ -147,6 +147,17 @@ struct Settings: View {
                                  messageBody: "")
                 }
             }
+            Section(header: Text(appLanguage == "sv" ? "Andra appar" : "Other Apps")) {
+                Link(destination: URL(string: "https://apps.apple.com/us/app/univert/id6745692591")!) {
+                    HStack {
+                        Image("univert")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(8)
+                        Text("Univert")
+                    }
+                }
+            }
             Section {
                 EmptyView()
             } footer: {
