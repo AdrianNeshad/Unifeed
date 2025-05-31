@@ -117,50 +117,6 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/pressmeddelanden-hela-landet/")
         case "Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/hela-landet/nyheter-hela-landet/")
-            
-            
-        case "Folkhälsomyndigheten":
-            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
-        case "Aftonbladet":
-            return URL(string: "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/")
-        case "Dagens Industri":
-            return URL(string: "https://www.di.se/digital/rss")
-        case "Fotbollskanalen":
-            return URL(string: "https://www.fotbollskanalen.se/rss/")
-        case "FotbollsExpressen":
-            return URL(string: "https://feeds.expressen.se/fotboll/")
-        case "Expressen":
-            return URL(string: "https://feeds.expressen.se/nyheter/")
-        case "SportExpressen":
-            return URL(string: "https://feeds.expressen.se/sport/")
-        case "Expressen Ekonomi":
-            return URL(string: "https://feeds.expressen.se/ekonomi/")
-        case "Svenska Dagbladet":
-            return URL(string: "https://www.svd.se/feed/articles.rss")
-        case "SVT":
-            return URL(string: "https://www.svt.se/nyheter/rss.xml")
-        case "TV4":
-            return URL(string: "https://www.tv4.se/rss")
-        case "Krisinformation":
-            return URL(string: "https://www.krisinformation.se/nyheter?rss=true")
-        case "MSB":
-            return URL(string: "https://www.msb.se/sv/rss-floden/rss-alla-nyheter-fran-msb/")
-        case "Regeringen":
-            return URL(string: "https://www.regeringen.se/Filter/RssFeed?filterType=Taxonomy&filterByType=FilterablePageBase&preFilteredCategories=1284%2C1285%2C1286%2C1287%2C1288%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C2425&rootPageReference=0&filteredContentCategories=1334&filteredPoliticalLevelCategories=&filteredPoliticalAreaCategories=&filteredPublisherCategories=1296")
-        case "Skatteverket":
-            return URL(string: "https://skatteverket.se/4.dfe345a107ebcc9baf800017652/12.dfe345a107ebcc9baf800017658.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8")
-        case "Livsmedelsverket":
-            return URL(string: "https://www.livsmedelsverket.se/rss/rss-pressmeddelanden")
-        case "Läkemedelsverket":
-            return URL(string: "https://www.lakemedelsverket.se/api/newslist/newsrss?query=&pageTypeId=1&from=&to=")
-        case "Riksbanken":
-            return URL(string: "https://www.riksbank.se/sv/rss/nyheter/")
-        case "Dagens Nyheter":
-            return URL(string: "https://www.dn.se/rss/")
-        case "MarketWatch":
-            return URL(string: "https://feeds.content.dowjones.io/public/rss/mw_topstories")
-            
-            
             //Region Nord
         case "Jämtland - Nyheter":
             return URL(string: "https://polisen.se/aktuellt/rss/jamtland/nyheter-rss---jamtland/")
@@ -258,7 +214,50 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://polisen.se/aktuellt/rss/dalarna/nyheter-rss---dalarna/")
         case "Dalarna - Händelser":
             return URL(string: "https://polisen.se/aktuellt/rss/dalarna/handelser-rss---dalarna/")
-
+            
+        case "Folkhälsomyndigheten":
+            return URL(string: "https://www.folkhalsomyndigheten.se/nyheter-och-press/nyhetsarkiv/?syndication=rss")
+        case "Aftonbladet":
+            return URL(string: "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/")
+        case "Dagens Industri":
+            return URL(string: "https://www.di.se/digital/rss")
+        case "Fotbollskanalen":
+            return URL(string: "https://www.fotbollskanalen.se/rss/")
+        case "FotbollsExpressen":
+            return URL(string: "https://feeds.expressen.se/fotboll/")
+        case "Expressen":
+            return URL(string: "https://feeds.expressen.se/nyheter/")
+        case "SportExpressen":
+            return URL(string: "https://feeds.expressen.se/sport/")
+        case "Expressen Ekonomi":
+            return URL(string: "https://feeds.expressen.se/ekonomi/")
+        case "Svenska Dagbladet":
+            return URL(string: "https://www.svd.se/feed/articles.rss")
+        case "SVT":
+            return URL(string: "https://www.svt.se/nyheter/rss.xml")
+        case "TV4":
+            return URL(string: "https://www.tv4.se/rss")
+        case "Krisinformation":
+            return URL(string: "https://www.krisinformation.se/nyheter?rss=true")
+        case "MSB":
+            return URL(string: "https://www.msb.se/sv/rss-floden/rss-alla-nyheter-fran-msb/")
+        case "Regeringen":
+            return URL(string: "https://www.regeringen.se/Filter/RssFeed?filterType=Taxonomy&filterByType=FilterablePageBase&preFilteredCategories=1284%2C1285%2C1286%2C1287%2C1288%2C1290%2C1291%2C1292%2C1293%2C1294%2C1295%2C1296%2C1297%2C2425&rootPageReference=0&filteredContentCategories=1334&filteredPoliticalLevelCategories=&filteredPoliticalAreaCategories=&filteredPublisherCategories=1296")
+        case "Skatteverket":
+            return URL(string: "https://skatteverket.se/4.dfe345a107ebcc9baf800017652/12.dfe345a107ebcc9baf800017658.portlet?state=rss&sv.contenttype=text/xml;charset=UTF-8")
+        case "Livsmedelsverket":
+            return URL(string: "https://www.livsmedelsverket.se/rss/rss-pressmeddelanden")
+        case "Läkemedelsverket":
+            return URL(string: "https://www.lakemedelsverket.se/api/newslist/newsrss?query=&pageTypeId=1&from=&to=")
+        case "Riksbanken":
+            return URL(string: "https://www.riksbank.se/sv/rss/nyheter/")
+        case "Dagens Nyheter":
+            return URL(string: "https://www.dn.se/rss/")
+        case "MarketWatch":
+            return URL(string: "https://feeds.content.dowjones.io/public/rss/mw_topstories")
+        case "Yahoo Sports":
+            return URL(string: "https://sports.yahoo.com/general/news/rss/")
+            
         default:
             return nil
         }
