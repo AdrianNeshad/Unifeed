@@ -10,7 +10,8 @@ import SwiftUI
 struct NewsItemView: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @AppStorage("appLanguage") private var appLanguage = "sv"
-
+    @State private var showingShareSheet = false
+    
     let newsItem: NewsItem
     
     var body: some View {
@@ -76,6 +77,26 @@ struct NewsItemView: View {
                 )
         )
         .padding(.top, 10)
+        .contextMenu {
+            Button {
+                showingShareSheet = true
+            } label: {
+                Label(appLanguage == "sv" ? "Dela artikel" : "Share Article", systemImage: "square.and.arrow.up")
+            }
+            Button {
+                    if let url = newsItem.link {
+                        UIPasteboard.general.string = url.absoluteString
+                    }
+                } label: {
+                    Label(appLanguage == "sv" ? "Kopiera länk" : "Copy Link", systemImage: "doc.on.doc")
+            }
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            if let url = newsItem.link {
+                ShareSheet(activityItems: [url])
+                    .presentationDetents([.medium])
+            }
+        }
     }
 
     private func dateFormatted(_ date: Date) -> String {

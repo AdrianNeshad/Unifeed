@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct Unifeed_Index: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
@@ -16,7 +17,9 @@ struct Unifeed_Index: View {
     @State private var showingSheet = false
     @State private var selectedLink: IdentifiableURL? = nil
     @State private var showingCategoryPicker = false
-    
+    @State private var showFeedUpdatedToast = false
+    @State private var wasLoading = false
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -82,7 +85,18 @@ struct Unifeed_Index: View {
                     }
                 }
             }
-
+            .onChange(of: viewModel.isLoading) { isLoading in
+                if wasLoading && !isLoading {
+                    showFeedUpdatedToast = true
+                }
+                wasLoading = isLoading
+            }
+            .toast(isPresenting: $showFeedUpdatedToast, duration: 1.5) {
+                AlertToast(displayMode: .hud,
+                           type: .complete(.green),
+                           title: appLanguage == "sv" ? "Uppdaterat" : "Updated",
+                           subTitle: appLanguage == "sv" ? "Visar senaste" : "Showing Latest")
+            }
             .preferredColorScheme(isDarkMode ? .dark : .light)
             .sheet(isPresented: $showingCategoryPicker) {
                 NavigationView {
