@@ -147,6 +147,7 @@ struct Settings: View {
                                  messageBody: "")
                 }
             }
+            /*
             Section(header: Text(appLanguage == "sv" ? "Andra appar" : "Other Apps")) {
                 Link(destination: URL(string: "https://apps.apple.com/us/app/univert/id6745692591")!) {
                     HStack {
@@ -167,6 +168,7 @@ struct Settings: View {
                     }
                 }
             }
+             */
             Section {
                 EmptyView()
             } footer: {
