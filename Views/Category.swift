@@ -128,7 +128,8 @@ enum Category: String, CaseIterable, Identifiable {
         case .fotboll:
             return [
                 NewsSource(name: "Fotbollskanalen", logo: "fk_logo"),
-                NewsSource(name: "FotbollsExpressen", logo: "exp_logo")
+                NewsSource(name: "FotbollsExpressen", logo: "exp_logo"),
+                NewsSource(name: "Fotbolltransfers", logo: "ft_logo")
             ]
         }
     }  

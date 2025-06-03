@@ -257,6 +257,8 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://feeds.content.dowjones.io/public/rss/mw_topstories")
         case "Yahoo Sports":
             return URL(string: "https://sports.yahoo.com/general/news/rss/")
+        case "Fotbolltransfers":
+            return URL(string: "https://fotbolltransfers.com/rss/nyheter/alla")
             
         default:
             return nil
