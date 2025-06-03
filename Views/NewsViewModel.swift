@@ -259,6 +259,8 @@ class NewsViewModel: ObservableObject {
             return URL(string: "https://sports.yahoo.com/general/news/rss/")
         case "Fotbolltransfers":
             return URL(string: "https://fotbolltransfers.com/rss/nyheter/alla")
+        case "SVT Sport":
+            return URL(string: "https://www.svt.se/sport/rss.xml")
             
         default:
             return nil
