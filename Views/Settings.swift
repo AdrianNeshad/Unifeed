@@ -52,6 +52,7 @@ struct Settings: View {
                 }) {
                     HStack {
                         Text(appLanguage == "sv" ? "Återställ filter" : "Reset Filters")
+                            .foregroundColor(.red)
                     }
                 }
             }
