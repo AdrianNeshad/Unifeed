@@ -148,7 +148,6 @@ struct Settings: View {
                                  messageBody: "")
                 }
             }
-            /*
             Section(header: Text(appLanguage == "sv" ? "Andra appar" : "Other Apps")) {
                 Link(destination: URL(string: "https://apps.apple.com/us/app/univert/id6745692591")!) {
                     HStack {
@@ -159,6 +158,7 @@ struct Settings: View {
                         Text("Univert")
                     }
                 }
+                /*
                 Link(destination: URL(string: "https://apps.apple.com/us/app/flixswipe/id6746682499")!) {
                     HStack {
                         Image("flixswipe")
@@ -168,8 +168,8 @@ struct Settings: View {
                         Text("FlixSwipe")
                     }
                 }
+                 */
             }
-             */
             Section {
                 EmptyView()
             } footer: {
