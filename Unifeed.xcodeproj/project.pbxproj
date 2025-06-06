@@ -126,13 +126,6 @@
 			path = RSS;
 			sourceTree = "<group>";
 		};
-		3A0357A52DE77D300066F14E /* Ads */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Ads;
-			sourceTree = "<group>";
-		};
 		3A0357A62DE77D3B0066F14E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +169,6 @@
 				3A0357AE2DE77E5B0066F14E /* Functions */,
 				3A0357A62DE77D3B0066F14E /* Views */,
 				3A0357A22DE77D010066F14E /* RSS */,
-				3A0357A52DE77D300066F14E /* Ads */,
 				3A0357A92DE77DC00066F14E /* in-app purchase */,
 				3A5424E22DE779DF000D58DA /* UnifeedTests */,
 				3A5424EC2DE779DF000D58DA /* UnifeedUITests */,
