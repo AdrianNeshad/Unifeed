@@ -21,9 +21,11 @@ class NewsViewModel: ObservableObject {
     }
 
     @Published var activeSources: Set<String> = [] {
-        didSet {
-            saveActiveSources()
-        }
+        didSet { saveActiveSources() }
+    }
+
+    @Published var customSources: [Category: [NewsSource]] = [:] {
+        didSet { saveCustomSources() }
     }
 
     private var categoryKey: String {
@@ -31,31 +33,30 @@ class NewsViewModel: ObservableObject {
     }
 
     var filteredSources: [NewsSource] {
-        currentCategory.sources.filter { activeSources.isEmpty || activeSources.contains($0.name) }
+        let standard = currentCategory.sources
+        let custom = customSources[currentCategory] ?? []
+        let all = standard + custom
+        return all.filter { activeSources.isEmpty || activeSources.contains($0.name) }
     }
 
     init() {
+        loadCustomSources()
         loadActiveSources()
         loadNews()
     }
 
     func loadActiveSources() {
-        let saved = UserDefaults.standard.string(forKey: categoryKey)?
-            .split(separator: "|")
-            .map(String.init) ?? []
-
-        let allNames = currentCategory.sources.map { $0.name }
+        let saved = UserDefaults.standard.string(forKey: categoryKey)?.split(separator: "|").map(String.init) ?? []
+        let allNames = (currentCategory.sources + (customSources[currentCategory] ?? [])).map { $0.name }
         let validSaved = saved.filter { allNames.contains($0) }
 
         if !validSaved.isEmpty {
             activeSources = Set(validSaved)
         } else {
             if currentCategory == .polisen {
-                // Endast de tre första nationella flödena aktiva
                 let defaultSources = currentCategory.sources.prefix(3).map { $0.name }
                 activeSources = Set(defaultSources)
             } else {
-                // Alla flöden valda som default för övriga kategorier
                 activeSources = Set(allNames)
             }
         }
@@ -64,6 +65,22 @@ class NewsViewModel: ObservableObject {
     func saveActiveSources() {
         let joined = activeSources.joined(separator: "|")
         UserDefaults.standard.setValue(joined, forKey: categoryKey)
+    }
+
+    func saveCustomSources() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(customSources) {
+            UserDefaults.standard.set(data, forKey: "customSources")
+        }
+    }
+
+    func loadCustomSources() {
+        if let data = UserDefaults.standard.data(forKey: "customSources") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Category: [NewsSource]].self, from: data) {
+                customSources = decoded
+            }
+        }
     }
 
     func loadNews() {
@@ -76,7 +93,8 @@ class NewsViewModel: ObservableObject {
         let sources = filteredSources
 
         for source in sources {
-            guard let feedURL = feedURL(for: source.name) else { continue }
+            let url = source.url ?? feedURL(for: source.name)
+            guard let feedURL = url else { continue }
 
             let rssFetcher = RSSFetcher()
             group.enter()

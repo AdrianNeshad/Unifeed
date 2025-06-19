@@ -19,6 +19,7 @@ struct Unifeed_Index: View {
     @State private var showingCategoryPicker = false
     @State private var showFeedUpdatedToast = false
     @State private var wasLoading = false
+    @State private var showingFilterSheet = false
 
     var body: some View {
         NavigationView {
@@ -71,7 +72,9 @@ struct Unifeed_Index: View {
                 }
                 if viewModel.currentCategory != .polisen {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: Filter().environmentObject(viewModel)) {
+                        Button {
+                            showingFilterSheet = true
+                        } label: {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                         }
                     }
@@ -96,6 +99,12 @@ struct Unifeed_Index: View {
                            subTitle: appLanguage == "sv" ? "Visar senaste" : "Showing Latest")
             }
             .preferredColorScheme(isDarkMode ? .dark : .light)
+            .sheet(isPresented: $showingFilterSheet) {
+                NavigationView {
+                    Filter()
+                        .environmentObject(viewModel)
+                }
+            }
             .sheet(isPresented: $showingCategoryPicker) {
                 NavigationView {
                     List(Category.allCases) { category in

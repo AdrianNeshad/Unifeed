@@ -7,10 +7,20 @@
 
 import Foundation
 
-struct NewsSource: Identifiable {
-    let id = UUID()
+struct NewsSource: Identifiable, Codable, Hashable {
+    let id: UUID
     let name: String
     let logo: String?
+    let url: URL?
+    let isCustom: Bool
+
+    init(name: String, logo: String?, url: URL?, isCustom: Bool = false) {
+        self.id = UUID()
+        self.name = name
+        self.logo = logo
+        self.url = url
+        self.isCustom = isCustom
+    }
 }
 
 struct NewsItem: Identifiable {
@@ -21,5 +31,5 @@ struct NewsItem: Identifiable {
     let source: NewsSource
     let pubDate: Date?
     let link: URL?
-    var fullArticleContent: String? 
+    var fullArticleContent: String?
 }

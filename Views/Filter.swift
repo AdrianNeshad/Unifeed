@@ -11,35 +11,31 @@ struct Filter: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel: NewsViewModel
     @AppStorage("appLanguage") private var appLanguage = "sv"
+    @State private var showingAddSource = false
 
     var body: some View {
         List {
             ForEach(viewModel.currentCategory.sources) { source in
-                Button {
-                    toggle(source)
-                } label: {
-                    HStack {
-                        if let logo = source.logo {
-                            Image(logo)
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                                .clipShape(Circle())
-                        } else {
-                            Image(systemName: "photo")
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.gray)
-                        }
+                sourceRow(source)
+            }
 
-                        Text(source.name)
-                            .padding(.leading, 4)
-                            .foregroundColor(.primary)
-
-                        Spacer()
-
-                        Image(systemName: viewModel.activeSources.contains(source.name) ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(.accentColor)
+            if viewModel.currentCategory != .polisen {
+                Section(header: Text(appLanguage == "sv" ? "Egna källor" : "Custom Sources")) {
+                    ForEach(viewModel.customSources[viewModel.currentCategory] ?? []) { source in
+                        sourceRow(source)
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    removeCustomSource(source)
+                                } label: {
+                                    Label("Radera", systemImage: "trash")
+                                }
+                            }
                     }
-
+                    Button {
+                        showingAddSource = true
+                    } label: {
+                        Label(appLanguage == "sv" ? "Lägg till egen källa" : "Add custom source", systemImage: "plus")
+                    }
                 }
             }
         }
@@ -52,6 +48,37 @@ struct Filter: View {
                 }
             }
         }
+        .sheet(isPresented: $showingAddSource) {
+            NavigationView {
+                AddCustomSourceView(category: viewModel.currentCategory)
+                    .environmentObject(viewModel)
+            }
+        }
+    }
+
+    private func sourceRow(_ source: NewsSource) -> some View {
+        Button {
+            toggle(source)
+        } label: {
+            HStack {
+                if let logo = source.logo {
+                    Image(logo)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .clipShape(Circle())
+                } else {
+                    Image(systemName: source.isCustom ? "swift" : "photo")
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.gray)
+                }
+                Text(source.name)
+                    .padding(.leading, 4)
+                    .foregroundColor(.primary)
+                Spacer()
+                Image(systemName: viewModel.activeSources.contains(source.name) ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(.accentColor)
+            }
+        }
     }
 
     private func toggle(_ source: NewsSource) {
@@ -60,5 +87,10 @@ struct Filter: View {
         } else {
             viewModel.activeSources.insert(source.name)
         }
+    }
+
+    private func removeCustomSource(_ source: NewsSource) {
+        viewModel.customSources[viewModel.currentCategory]?.removeAll { $0.id == source.id }
+        viewModel.activeSources.remove(source.name)
     }
 }
