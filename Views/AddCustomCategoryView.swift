@@ -17,15 +17,15 @@ struct AddCustomCategoryView: View {
 
     private let availableIcons = [
         "newspaper", "bolt", "star", "flame", "leaf", "globe", "waveform", "building.columns",
-        "book", "film", "tv", "sportscourt", "soccerball", "dollarsign.circle", "swift",
+        "book", "film", "tv", "sportscourt", "soccerball", "dollarsign.circle",
         "lightbulb", "heart", "cross.case", "stethoscope", "bandage", "graduationcap",
         "theatermasks", "music.note", "camera", "car", "tram", "airplane", "bicycle", "ferry",
-        "hammer", "wrench", "desktopcomputer", "iphone", "cpu", "antenna.radiowaves.left.and.right",
+        "hammer", "wrench", "desktopcomputer", "cpu", "antenna.radiowaves.left.and.right",
         "shield", "lock.shield", "person.3", "person.crop.circle", "chart.line.uptrend.xyaxis",
         "chart.pie", "map", "doc.text", "doc.text.magnifyingglass", "clock", "calendar",
         "building", "house", "drop", "globe.americas", "tornado", "sun.max", "cloud.rain", "snowflake",
         "exclamationmark.triangle", "checkmark.shield", "envelope", "message", "bubble.left.and.bubble.right",
-        "questionmark.circle", "magnifyingglass", "link", "paperplane", "bell", "megaphone", "apps.iphone"
+        "questionmark.circle", "magnifyingglass", "link", "paperplane", "bell", "megaphone"
     ]
 
     var body: some View {
