@@ -20,5 +20,6 @@ struct NewsItem: Identifiable {
     let imageURL: URL?
     let source: NewsSource
     let pubDate: Date?
-    let link: URL?  
+    let link: URL?
+    var fullArticleContent: String? 
 }

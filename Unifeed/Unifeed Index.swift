@@ -15,7 +15,7 @@ struct Unifeed_Index: View {
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
     @State private var showingSheet = false
-    @State private var selectedLink: IdentifiableURL? = nil
+    @State private var selectedNewsItem: NewsItem? = nil
     @State private var showingCategoryPicker = false
     @State private var showFeedUpdatedToast = false
     @State private var wasLoading = false
@@ -41,16 +41,14 @@ struct Unifeed_Index: View {
                             NewsItemView(newsItem: item)
                                 .padding(.horizontal)
                                 .onTapGesture {
-                                    if let link = item.link {
-                                        selectedLink = IdentifiableURL(url: link)
-                                    }
+                                    selectedNewsItem = item
                                 }
                         }
                     }
                 }
             }
-            .sheet(item: $selectedLink) { wrapped in
-                SafariView(url: wrapped.url)
+            .sheet(item: $selectedNewsItem) { item in
+                ArticleDetailView(newsItem: item)
             }
             .refreshable {
                 viewModel.loadNews()
@@ -123,12 +121,6 @@ struct Unifeed_Index: View {
         }
     }
 }
-
-struct IdentifiableURL: Identifiable {
-    let id = UUID()
-    let url: URL
-}
-
 
 #Preview {
     Unifeed_Index()
