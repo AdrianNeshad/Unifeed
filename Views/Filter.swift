@@ -15,26 +15,48 @@ struct Filter: View {
 
     var body: some View {
         List {
-            ForEach(viewModel.currentCategory.sources) { source in
-                sourceRow(source)
-            }
-
-            if viewModel.currentCategory != .polisen {
-                Section(header: Text(appLanguage == "sv" ? "Egna källor" : "Custom Sources")) {
-                    ForEach(viewModel.customSources[viewModel.currentCategory] ?? []) { source in
-                        sourceRow(source)
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    removeCustomSource(source)
-                                } label: {
-                                    Label("Radera", systemImage: "trash")
-                                }
+            if let custom = viewModel.currentCustomCategory {
+                ForEach(viewModel.customCategorySources[custom.id] ?? []) { source in
+                    sourceRow(source)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                removeCustomCategorySource(source, for: custom)
+                            } label: {
+                                Label("Radera", systemImage: "trash")
                             }
-                    }
+                        }
+                }
+
+                Section {
                     Button {
                         showingAddSource = true
                     } label: {
                         Label(appLanguage == "sv" ? "Lägg till egen källa" : "Add custom source", systemImage: "plus")
+                    }
+                }
+
+            } else {
+                ForEach(viewModel.currentCategory.sources) { source in
+                    sourceRow(source)
+                }
+
+                if viewModel.currentCategory != .polisen {
+                    Section(header: Text(appLanguage == "sv" ? "Egna källor" : "Custom Sources")) {
+                        ForEach(viewModel.customSources[viewModel.currentCategory] ?? []) { source in
+                            sourceRow(source)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        removeCustomSource(source)
+                                    } label: {
+                                        Label("Radera", systemImage: "trash")
+                                    }
+                                }
+                        }
+                        Button {
+                            showingAddSource = true
+                        } label: {
+                            Label(appLanguage == "sv" ? "Lägg till egen källa" : "Add custom source", systemImage: "plus")
+                        }
                     }
                 }
             }
@@ -50,7 +72,7 @@ struct Filter: View {
         }
         .sheet(isPresented: $showingAddSource) {
             NavigationView {
-                AddCustomSourceView(category: viewModel.currentCategory)
+                AddCustomSourceView(category: viewModel.currentCategory, customCategory: viewModel.currentCustomCategory)
                     .environmentObject(viewModel)
             }
         }
@@ -91,6 +113,11 @@ struct Filter: View {
 
     private func removeCustomSource(_ source: NewsSource) {
         viewModel.customSources[viewModel.currentCategory]?.removeAll { $0.id == source.id }
+        viewModel.activeSources.remove(source.name)
+    }
+
+    private func removeCustomCategorySource(_ source: NewsSource, for category: CustomCategory) {
+        viewModel.customCategorySources[category.id]?.removeAll { $0.id == source.id }
         viewModel.activeSources.remove(source.name)
     }
 }

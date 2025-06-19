@@ -14,12 +14,12 @@ struct Unifeed_Index: View {
     @AppStorage("AdsRemoved") private var AdsRemoved = false
     @StateObject private var storeManager = StoreManager()
     @StateObject var viewModel = NewsViewModel()
-    @State private var showingSheet = false
     @State private var selectedNewsItem: NewsItem? = nil
     @State private var showingCategoryPicker = false
     @State private var showFeedUpdatedToast = false
     @State private var wasLoading = false
     @State private var showingFilterSheet = false
+    @State private var showingAddCategory = false
 
     var body: some View {
         NavigationView {
@@ -36,9 +36,8 @@ struct Unifeed_Index: View {
                                 .foregroundColor(.gray)
                         }
                         .padding()
-                    }
-                    else {
-                        ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { index, item in
+                    } else {
+                        ForEach(Array(viewModel.newsItems.enumerated()), id: \.element.id) { _, item in
                             NewsItemView(newsItem: item)
                                 .padding(.horizontal)
                                 .onTapGesture {
@@ -54,7 +53,7 @@ struct Unifeed_Index: View {
             .refreshable {
                 viewModel.loadNews()
             }
-            .navigationTitle(viewModel.currentCategory.localizedName(language: appLanguage))
+            .navigationTitle(viewModel.currentCustomCategory?.name ?? viewModel.currentCategory.localizedName(language: appLanguage))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -70,7 +69,16 @@ struct Unifeed_Index: View {
                         }
                     }
                 }
-                if viewModel.currentCategory != .polisen {
+                if viewModel.currentCategory != .polisen && viewModel.currentCustomCategory == nil {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            showingFilterSheet = true
+                        } label: {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                        }
+                    }
+                }
+                if viewModel.currentCustomCategory != nil {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             showingFilterSheet = true
@@ -105,28 +113,71 @@ struct Unifeed_Index: View {
                         .environmentObject(viewModel)
                 }
             }
-            .sheet(isPresented: $showingCategoryPicker) {
-                NavigationView {
-                    List(Category.allCases) { category in
-                        Button {
-                            viewModel.currentCategory = category
-                            showingCategoryPicker = false
-                        } label: {
-                            HStack {
-                                Image(systemName: category.iconName)
-                                Text(category.localizedName(language: appLanguage))
-                                    .foregroundColor(.primary)
-                                if viewModel.currentCategory == category {
-                                    Spacer()
-                                    Image(systemName: "checkmark")
+                .sheet(isPresented: $showingCategoryPicker) {
+                    NavigationView {
+                        List {
+                            Section(header: Text(appLanguage == "sv" ? "Standardflöden" : "Default Feeds")) {
+                                ForEach(Category.allCases) { category in
+                                    categoryRow(category)
+                                }
+                            }
+                            Section(header: Text(appLanguage == "sv" ? "Eget flöde" : "Custom Feed")) {
+                                ForEach(viewModel.customCategories) { custom in
+                                    Button {
+                                        viewModel.setCustomCategory(custom)
+                                        showingCategoryPicker = false
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: custom.icon)
+                                            Text(custom.name)
+                                                .foregroundColor(.primary)
+                                            if viewModel.currentCustomCategory?.id == custom.id {
+                                                Spacer()
+                                                Image(systemName: "checkmark")
+                                            }
+                                        }
+                                    }
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            viewModel.removeCustomCategory(custom)
+                                        } label: {
+                                            Label("Radera", systemImage: "trash")
+                                        }
+                                    }
+                                }
+                                Button {
+                                    showingAddCategory = true
+                                } label: {
+                                    Label(appLanguage == "sv" ? "Lägg till flöde" : "Add new feed", systemImage: "plus")
                                 }
                             }
                         }
-                    }
-                    .navigationTitle(appLanguage == "sv" ? "Välj kategori" : "Choose Category")
+                        .navigationTitle(appLanguage == "sv" ? "Välj kategori" : "Choose Category")
+                        .sheet(isPresented: $showingAddCategory) {
+                                    NavigationView {
+                                        AddCustomCategoryView()
+                                            .environmentObject(viewModel)
+                                    }
+                                }
+                            }
+                        }
+        }
+    }
+
+    private func categoryRow(_ category: Category) -> some View {
+        Button {
+            viewModel.setCategory(category)
+            showingCategoryPicker = false
+        } label: {
+            HStack {
+                Image(systemName: category.iconName)
+                Text(category.localizedName(language: appLanguage))
+                    .foregroundColor(.primary)
+                if viewModel.currentCategory == category && viewModel.currentCustomCategory == nil {
+                    Spacer()
+                    Image(systemName: "checkmark")
                 }
             }
-
         }
     }
 }

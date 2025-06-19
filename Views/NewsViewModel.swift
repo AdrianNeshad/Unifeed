@@ -6,129 +6,216 @@
 //
 
 import Foundation
-import Combine
-import SwiftUI
+ import Combine
+ import SwiftUI
+ 
+ class NewsViewModel: ObservableObject {
+     @Published var isLoading: Bool = false
+     @Published var newsItems: [NewsItem] = []
+ 
+     @Published var currentCategory: Category = .noje
+     @Published var currentCustomCategory: CustomCategory? = nil
+ 
+     @Published var activeSources: Set<String> = [] {
+         didSet { saveActiveSources() }
+     }
+ 
+     @Published var customSources: [Category: [NewsSource]] = [:] {
+         didSet { saveCustomSources() }
+     }
+ 
+     @Published var customCategorySources: [UUID: [NewsSource]] = [:] {
+         didSet { saveCustomCategorySources() }
+     }
+ 
+     @Published var customCategories: [CustomCategory] = [] {
+         didSet { saveCustomCategories() }
+     }
+ 
+     private var categoryKey: String {
+         if let custom = currentCustomCategory {
+             return "activeSources_custom_\(custom.id.uuidString)"
+         } else {
+             return "activeSources_\(currentCategory.rawValue)"
+         }
+     }
+ 
+     var filteredSources: [NewsSource] {
+         if let custom = currentCustomCategory {
+             let customList = customCategorySources[custom.id] ?? []
+             return customList.filter { activeSources.isEmpty || activeSources.contains($0.name) }
+         } else {
+             let standard = currentCategory.sources
+             let custom = customSources[currentCategory] ?? []
+             let all = standard + custom
+           return all.filter { activeSources.isEmpty || activeSources.contains($0.name) }
+       }
+   }
 
-class NewsViewModel: ObservableObject {
-    @Published var isLoading: Bool = false
-    @Published var newsItems: [NewsItem] = []
+   init() {
+       loadCustomSources()
+       loadCustomCategories()
+       loadCustomCategorySources()
+       loadActiveSources()
+       loadNews()
+   }
 
-    @Published var currentCategory: Category = .noje {
-        didSet {
-            loadActiveSources()
-            loadNews()
-        }
-    }
+   func setCategory(_ category: Category) {
+       currentCategory = category
+       currentCustomCategory = nil
+       loadActiveSources()
+       loadNews()
+   }
 
-    @Published var activeSources: Set<String> = [] {
-        didSet { saveActiveSources() }
-    }
+   func setCustomCategory(_ category: CustomCategory) {
+       currentCustomCategory = category
+       currentCategory = .noje
+       loadActiveSources()
+       loadNews()
+   }
 
-    @Published var customSources: [Category: [NewsSource]] = [:] {
-        didSet { saveCustomSources() }
-    }
+   func addCustomCategory(name: String, icon: String) {
+       let new = CustomCategory(name: name, icon: icon)
+       customCategories.append(new)
+       customCategorySources[new.id] = []
+       activeSources = []
+       setCustomCategory(new)
+   }
 
-    private var categoryKey: String {
-        "activeSources_\(currentCategory.rawValue)"
-    }
+   func removeCustomCategory(_ category: CustomCategory) {
+       customCategories.removeAll { $0.id == category.id }
+       customCategorySources[category.id] = nil
+       UserDefaults.standard.removeObject(forKey: "activeSources_custom_\(category.id.uuidString)")
+       if currentCustomCategory?.id == category.id {
+           currentCustomCategory = nil
+       }
+       loadNews()
+   }
 
-    var filteredSources: [NewsSource] {
-        let standard = currentCategory.sources
-        let custom = customSources[currentCategory] ?? []
-        let all = standard + custom
-        return all.filter { activeSources.isEmpty || activeSources.contains($0.name) }
-    }
+   func saveCustomSources() {
+       let encoder = JSONEncoder()
+       if let data = try? encoder.encode(customSources) {
+           UserDefaults.standard.set(data, forKey: "customSources")
+       }
+   }
 
-    init() {
-        loadCustomSources()
-        loadActiveSources()
-        loadNews()
-    }
+   func loadCustomSources() {
+       if let data = UserDefaults.standard.data(forKey: "customSources") {
+           let decoder = JSONDecoder()
+           if let decoded = try? decoder.decode([Category: [NewsSource]].self, from: data) {
+               customSources = decoded
+           }
+       }
+   }
 
-    func loadActiveSources() {
-        let saved = UserDefaults.standard.string(forKey: categoryKey)?.split(separator: "|").map(String.init) ?? []
-        let allNames = (currentCategory.sources + (customSources[currentCategory] ?? [])).map { $0.name }
-        let validSaved = saved.filter { allNames.contains($0) }
+   func saveCustomCategories() {
+       if let data = try? JSONEncoder().encode(customCategories) {
+           UserDefaults.standard.set(data, forKey: "customCategories")
+       }
+   }
 
-        if !validSaved.isEmpty {
-            activeSources = Set(validSaved)
-        } else {
-            if currentCategory == .polisen {
-                let defaultSources = currentCategory.sources.prefix(3).map { $0.name }
-                activeSources = Set(defaultSources)
-            } else {
-                activeSources = Set(allNames)
-            }
-        }
-    }
+   func loadCustomCategories() {
+       if let data = UserDefaults.standard.data(forKey: "customCategories"),
+          let decoded = try? JSONDecoder().decode([CustomCategory].self, from: data) {
+           customCategories = decoded
+       }
+   }
 
-    func saveActiveSources() {
-        let joined = activeSources.joined(separator: "|")
-        UserDefaults.standard.setValue(joined, forKey: categoryKey)
-    }
+   func saveCustomCategorySources() {
+       if let data = try? JSONEncoder().encode(customCategorySources) {
+           UserDefaults.standard.set(data, forKey: "customCategorySources")
+       }
+   }
 
-    func saveCustomSources() {
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(customSources) {
-            UserDefaults.standard.set(data, forKey: "customSources")
-        }
-    }
+   func loadCustomCategorySources() {
+       if let data = UserDefaults.standard.data(forKey: "customCategorySources"),
+          let decoded = try? JSONDecoder().decode([UUID: [NewsSource]].self, from: data) {
+           customCategorySources = decoded
+       }
+   }
 
-    func loadCustomSources() {
-        if let data = UserDefaults.standard.data(forKey: "customSources") {
-            let decoder = JSONDecoder()
-            if let decoded = try? decoder.decode([Category: [NewsSource]].self, from: data) {
-                customSources = decoded
-            }
-        }
-    }
+   func saveActiveSources() {
+       let joined = activeSources.joined(separator: "|")
+       UserDefaults.standard.setValue(joined, forKey: categoryKey)
+   }
 
-    func loadNews() {
-        isLoading = true
-        newsItems = []
-        let group = DispatchGroup()
-        var allItems: [NewsItem] = []
-        var errors: [Error] = []
+   func loadActiveSources() {
+       let saved = UserDefaults.standard.string(forKey: categoryKey)?.split(separator: "|").map(String.init) ?? []
 
-        let sources = filteredSources
+       let allNames: [String] = {
+           if let custom = currentCustomCategory {
+               return (customCategorySources[custom.id] ?? []).map { $0.name }
+           } else {
+               return (currentCategory.sources + (customSources[currentCategory] ?? [])).map { $0.name }
+           }
+       }()
 
-        for source in sources {
-            let url = source.url ?? feedURL(for: source.name)
-            guard let feedURL = url else { continue }
+       guard !allNames.isEmpty else {
+           activeSources = []
+           return
+       }
 
-            let rssFetcher = RSSFetcher()
-            group.enter()
-            rssFetcher.fetchFeed(from: feedURL, source: source) { result in
-                switch result {
-                case .success(let items):
-                    allItems.append(contentsOf: items)
-                case .failure(let error):
-                    errors.append(error)
-                }
-                group.leave()
-            }
-        }
+       let validSaved = saved.filter { allNames.contains($0) }
+       if !validSaved.isEmpty {
+           activeSources = Set(validSaved)
+       } else {
+           activeSources = Set(allNames)
+       }
+   }
 
-        group.notify(queue: .main) {
-            var seen = Set<String>()
-            let uniqueItems = allItems.filter { item in
-                let key = "\(item.title)-\(item.pubDate?.timeIntervalSince1970 ?? 0)"
-                if seen.contains(key) {
-                    return false
-                } else {
-                    seen.insert(key)
-                    return true
-                }
-            }
-            self.newsItems = uniqueItems.sorted(by: { ($0.pubDate ?? Date.distantPast) > ($1.pubDate ?? Date.distantPast) })
-            self.isLoading = false
+   func loadNews() {
+       isLoading = true
+       newsItems = []
 
-            if !errors.isEmpty {
-                print("Fel vid hämtning: \(errors)")
-            }
-        }
-    }
+       if filteredSources.isEmpty {
+           isLoading = false
+           newsItems = []
+           return
+       }
 
+       let group = DispatchGroup()
+       var allItems: [NewsItem] = []
+       var errors: [Error] = []
+
+       let sources = filteredSources
+
+       for source in sources {
+           let url = source.url ?? feedURL(for: source.name)
+           guard let feedURL = url else { continue }
+
+           let rssFetcher = RSSFetcher()
+           group.enter()
+           rssFetcher.fetchFeed(from: feedURL, source: source) { result in
+               switch result {
+               case .success(let items):
+                   allItems.append(contentsOf: items)
+               case .failure(let error):
+                   errors.append(error)
+               }
+               group.leave()
+           }
+       }
+
+       group.notify(queue: .main) {
+           var seen = Set<String>()
+           let uniqueItems = allItems.filter { item in
+               let key = "\(item.title)-\(item.pubDate?.timeIntervalSince1970 ?? 0)"
+               if seen.contains(key) {
+                   return false
+               } else {
+                   seen.insert(key)
+                   return true
+               }
+           }
+           self.newsItems = uniqueItems.sorted(by: { ($0.pubDate ?? Date.distantPast) > ($1.pubDate ?? Date.distantPast) })
+           self.isLoading = false
+
+           if !errors.isEmpty {
+               print("Fel vid hämntning: \(errors)")
+           }
+       }
+   }
+    
     func feedURL(for sourceName: String) -> URL? {
         switch sourceName {
         case "Pressmeddelanden":

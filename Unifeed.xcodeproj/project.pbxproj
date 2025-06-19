@@ -10,6 +10,8 @@
 		2A88A4C92E0427050006EE74 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A4C82E0427000006EE74 /* ArticleDetailView.swift */; };
 		2A88A4CB2E042A280006EE74 /* ArticleContentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A4CA2E042A230006EE74 /* ArticleContentFetcher.swift */; };
 		2A88A4CF2E0431480006EE74 /* AddCustomSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A4CE2E0431410006EE74 /* AddCustomSourceView.swift */; };
+		2AE2BE432E043A67005AC3F7 /* AddCustomCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BE422E043A5C005AC3F7 /* AddCustomCategoryView.swift */; };
+		2AE2BE452E043AC8005AC3F7 /* CustomCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2BE442E043AC5005AC3F7 /* CustomCategory.swift */; };
 		3A0357A12DE77CF80066F14E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0357A02DE77CF80066F14E /* Launch Screen.storyboard */; };
 		3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357A32DE77D160066F14E /* Unifeed Index.swift */; };
 		3A0357A82DE77D480066F14E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0357A72DE77D480066F14E /* Settings.swift */; };
@@ -62,6 +64,8 @@
 		2A88A4C82E0427000006EE74 /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
 		2A88A4CA2E042A230006EE74 /* ArticleContentFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContentFetcher.swift; sourceTree = "<group>"; };
 		2A88A4CE2E0431410006EE74 /* AddCustomSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomSourceView.swift; sourceTree = "<group>"; };
+		2AE2BE422E043A5C005AC3F7 /* AddCustomCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomCategoryView.swift; sourceTree = "<group>"; };
+		2AE2BE442E043AC5005AC3F7 /* CustomCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategory.swift; sourceTree = "<group>"; };
 		3A0357A02DE77CF80066F14E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3A0357A32DE77D160066F14E /* Unifeed Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unifeed Index.swift"; sourceTree = "<group>"; };
 		3A0357A72DE77D480066F14E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		3A0357A22DE77D010066F14E /* RSS */ = {
 			isa = PBXGroup;
 			children = (
+				2AE2BE442E043AC5005AC3F7 /* CustomCategory.swift */,
 				2A88A4CA2E042A230006EE74 /* ArticleContentFetcher.swift */,
 				3A0357B32DE77FEA0066F14E /* Models.swift */,
 				3A0357B52DE780020066F14E /* RSSFetcher.swift */,
@@ -136,6 +141,7 @@
 		3A0357A62DE77D3B0066F14E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2AE2BE422E043A5C005AC3F7 /* AddCustomCategoryView.swift */,
 				2A88A4CE2E0431410006EE74 /* AddCustomSourceView.swift */,
 				2A88A4C82E0427000006EE74 /* ArticleDetailView.swift */,
 				3A0357C32DE787200066F14E /* Category.swift */,
@@ -386,6 +392,7 @@
 				3A0357A42DE77D160066F14E /* Unifeed Index.swift in Sources */,
 				3A0357C12DE786A70066F14E /* Location.swift in Sources */,
 				3A84BC8D2DEA663600AB85C6 /* ShareSheet.swift in Sources */,
+				2AE2BE452E043AC8005AC3F7 /* CustomCategory.swift in Sources */,
 				3A0357BC2DE782A00066F14E /* AppVersion.swift in Sources */,
 				3A1C28942DE8B52400F02DF8 /* String+HTMLDecoding.swift .swift in Sources */,
 				2A88A4CF2E0431480006EE74 /* AddCustomSourceView.swift in Sources */,
@@ -394,6 +401,7 @@
 				3A0357B82DE7802C0066F14E /* NewsViewModel.swift in Sources */,
 				3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */,
 				3A0357AB2DE77DE90066F14E /* PurchaseView.swift in Sources */,
+				2AE2BE432E043A67005AC3F7 /* AddCustomCategoryView.swift in Sources */,
 				2A88A4C92E0427050006EE74 /* ArticleDetailView.swift in Sources */,
 				3A0357B22DE77F050066F14E /* MailFeedback.swift in Sources */,
 				3A0357C42DE787200066F14E /* Category.swift in Sources */,
