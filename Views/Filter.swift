@@ -84,10 +84,16 @@ struct Filter: View {
         } label: {
             HStack {
                 if let logo = source.logo {
-                    Image(logo)
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .clipShape(Circle())
+                    if UIImage(systemName: logo) != nil {
+                        Image(systemName: logo)
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.accentColor)
+                    } else {
+                        Image(logo) 
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .clipShape(Circle())
+                    }
                 } else {
                     Image(systemName: source.isCustom ? "swift" : "photo")
                         .frame(width: 24, height: 24)

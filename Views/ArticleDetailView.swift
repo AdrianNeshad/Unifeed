@@ -43,10 +43,16 @@ struct ArticleDetailView: View {
                         .padding(.horizontal)
                     HStack {
                         if let logo = newsItem.source.logo {
-                            Image(logo)
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .clipShape(Circle())
+                            if UIImage(systemName: logo) != nil {
+                                Image(systemName: logo)
+                                    .frame(width: 22, height: 22)
+                                    .foregroundColor(.accentColor)
+                            } else {
+                                Image(logo)
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .clipShape(Circle())
+                            }
                         }
                         Text(newsItem.source.name)
                             .font(.subheadline)

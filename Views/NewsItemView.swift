@@ -18,10 +18,16 @@ struct NewsItemView: View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
                 if let logo = newsItem.source.logo {
-                    Image(logo)
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .clipShape(Circle())
+                    if UIImage(systemName: logo) != nil {
+                        Image(systemName: logo)
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.accentColor)
+                    } else {
+                        Image(logo)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                    }
                 }
                 Text(newsItem.source.name)
                     .font(.headline)
