@@ -97,7 +97,7 @@ class ArticleContentFetcher {
                  }
 
 
-                // Använd din befintliga HTML-dekodare och trimma slutliga mellanslag/radbrytningar
+                // Använd befintliga HTML-dekodare och trimma slutliga mellanslag/radbrytningar
                 completion(.success(articleText.decodedHTML.trimmingCharacters(in: .whitespacesAndNewlines)))
 
             } catch Exception.Error(_, let message) {

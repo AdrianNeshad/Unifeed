@@ -15,6 +15,7 @@ struct Filter: View {
 
     var body: some View {
         List {
+            
             if let custom = viewModel.currentCustomCategory {
                 ForEach(viewModel.customCategorySources[custom.id] ?? []) { source in
                     sourceRow(source)
