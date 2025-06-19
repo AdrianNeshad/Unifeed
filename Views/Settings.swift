@@ -167,18 +167,11 @@ struct Settings: View {
                         Text("FlixSwipe - Explore New Movies")
                     }
                 }
-                /*
-                Link(destination: URL(string: "https://apps.apple.com/us/app/flixswipe/id6746682499")!) {
-                    HStack {
-                        Image("flixswipe")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .cornerRadius(8)
-                        Text("FlixSwipe")
-                    }
-                }
-                 */
             }
+            Section {
+                Text(appVersion)
+            }
+            
             Section {
                 EmptyView()
             } footer: {
@@ -219,4 +212,10 @@ struct Settings: View {
         viewModel.loadActiveSources()
         viewModel.loadNews()
     }
+    
+    private var appVersion: String {
+            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
+            let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"
+            return "Version \(version) (\(build))"
+        }
 }
