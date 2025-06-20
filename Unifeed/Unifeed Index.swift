@@ -47,7 +47,7 @@ struct Unifeed_Index: View {
                             
                             // Riktigt ID: ca-app-pub-9539709997316775/8463191175
                             if !AdsRemoved && (index + 1) % 4 == 0 {
-                                BannerAdView(adUnitID: "ca-app-pub-3940256099942544/9214589741x")
+                                BannerAdView(adUnitID: "ca-app-pub-3940256099942544/9214589741")
                                     .frame(height: 150)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal)
