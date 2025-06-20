@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 @main
 struct UnifeedApp: App {
     @AppStorage("isDarkMode") private var isDarkMode = true
+    
+    init() {
+            MobileAds.shared.start()
+        }
     
     var body: some Scene {
         WindowGroup {

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,9 +33,6 @@
 		3A5424D22DE779DC000D58DA /* UnifeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424D12DE779DC000D58DA /* UnifeedApp.swift */; };
 		3A5424D62DE779DE000D58DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D52DE779DE000D58DA /* Assets.xcassets */; };
 		3A5424DA2DE779DE000D58DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */; };
-		3A5424E42DE779DF000D58DA /* UnifeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424E32DE779DF000D58DA /* UnifeedTests.swift */; };
-		3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */; };
-		3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */; };
 		3A6C800C2DE8CC88006EE796 /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */; };
 		3A7C07702DE7BBF50036EF90 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C076F2DE7BBF50036EF90 /* SafariView.swift */; };
 		3A84BC8D2DEA663600AB85C6 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84BC8C2DEA663600AB85C6 /* ShareSheet.swift */; };
@@ -87,16 +84,32 @@
 		3A5424D72DE779DE000D58DA /* Unifeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Unifeed.entitlements; sourceTree = "<group>"; };
 		3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3A5424DF2DE779DF000D58DA /* UnifeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnifeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A5424E32DE779DF000D58DA /* UnifeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedTests.swift; sourceTree = "<group>"; };
 		3A5424E92DE779DF000D58DA /* UnifeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnifeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITests.swift; sourceTree = "<group>"; };
-		3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A6C800B2DE8CC88006EE796 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		3A7392742DE8DB7F00542400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3A7C076F2DE7BBF50036EF90 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		3A84BC8C2DEA663600AB85C6 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		3AEC3EB72DEA03E2004E61D8 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2A4DD04F2E057550002A81E8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BannerAdView.swift,
+				GoogleMobileAds.xcframework,
+				NativeAdView.swift,
+				NativeAdView.xib,
+				TestContentView.swift,
+				UserMessagingPlatform.xcframework,
+			);
+			target = 3A5424CD2DE779DC000D58DA /* Unifeed */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2A4DD04C2E057534002A81E8 /* GoogleAdMob */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2A4DD04F2E057550002A81E8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = GoogleAdMob; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3A5424CB2DE779DC000D58DA /* Frameworks */ = {
@@ -180,13 +193,12 @@
 		3A5424C52DE779DC000D58DA = {
 			isa = PBXGroup;
 			children = (
+				2A4DD04C2E057534002A81E8 /* GoogleAdMob */,
 				3A5424D02DE779DC000D58DA /* Unifeed */,
 				3A0357AE2DE77E5B0066F14E /* Functions */,
 				3A0357A62DE77D3B0066F14E /* Views */,
 				3A0357A22DE77D010066F14E /* RSS */,
 				3A0357A92DE77DC00066F14E /* in-app purchase */,
-				3A5424E22DE779DF000D58DA /* UnifeedTests */,
-				3A5424EC2DE779DF000D58DA /* UnifeedUITests */,
 				3A5424CF2DE779DC000D58DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -221,23 +233,6 @@
 				3A5424D92DE779DE000D58DA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		3A5424E22DE779DF000D58DA /* UnifeedTests */ = {
-			isa = PBXGroup;
-			children = (
-				3A5424E32DE779DF000D58DA /* UnifeedTests.swift */,
-			);
-			path = UnifeedTests;
-			sourceTree = "<group>";
-		};
-		3A5424EC2DE779DF000D58DA /* UnifeedUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3A5424ED2DE779DF000D58DA /* UnifeedUITests.swift */,
-				3A5424EF2DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift */,
-			);
-			path = UnifeedUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +408,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5424E42DE779DF000D58DA /* UnifeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,8 +415,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5424EE2DE779DF000D58DA /* UnifeedUITests.swift in Sources */,
-				3A5424F02DE779DF000D58DA /* UnifeedUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,16 +583,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.7;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = AdrianNeshad.Unifeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -633,16 +626,17 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.7;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = AdrianNeshad.Unifeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
