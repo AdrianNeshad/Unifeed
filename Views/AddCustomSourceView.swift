@@ -39,7 +39,7 @@ struct AddCustomSourceView: View {
             }
 
             Section(header: Text("RSS URL")) {
-                TextField("https://example.com/rss", text: $urlString)
+                TextField(appLanguage == "sv" ? "Ange giltig RSS-länk (https://example.com/rss)" : "Enter valid RSS url (https://example.com/rss)", text: $urlString)
                     .keyboardType(.URL)
                     .autocapitalization(.none)
                     .textContentType(.URL)
