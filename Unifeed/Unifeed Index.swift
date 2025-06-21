@@ -43,11 +43,11 @@ struct Unifeed_Index: View {
                                 .onTapGesture {
                                     selectedNewsItem = item
                                 }
-                            // Test banner id:     ca-app-pub-3940256099942544/9214589741
+                            // Test banner id: ca-app-pub-3940256099942544/9214589741
                             
                             // Riktigt ID: ca-app-pub-9539709997316775/8463191175
                             if !AdsRemoved && (index + 1) % 4 == 0 {
-                                BannerAdView(adUnitID: "ca-app-pub-3940256099942544/9214589741")
+                                BannerAdView(adUnitID: "ca-app-pub-9539709997316775/8463191175")
                                     .frame(height: 150)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal)
